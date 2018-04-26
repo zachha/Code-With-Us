@@ -1,7 +1,7 @@
 {
-  "name": "code-with-me",
+  "name": "code-with-us",
   "version": "1.0.0",
-  "description": "code wih me is a Forum/Chat service for new coders and experienced programmers alike",
+  "description": "code wih us is a Forum/Chat service for new coders and experienced programmers alike",
   "main": "server.js",
   "scripts": {
     "server": "node server.js",
