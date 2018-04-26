@@ -1,0 +1,35 @@
+{
+  "name": "code-with-us",
+  "version": "1.0.0",
+  "description": "code wih us is a Forum/Chat service for new coders and experienced programmers alike",
+  "main": "server.js",
+  "scripts": {
+    "server": "node server.js",
+    "client": "node scripts/start-client.js",
+    "start": "concurrently \"nodemon server.js\"npm run client\"",
+    "build": "node scripts/build.js",
+    "test": "echo\"Error: no test specified\" && exit 1"
+  },
+  "repository": "git@github.com:zachha/Code-With-Us.git",
+  "author": "Zach Harmon <zachha@gmail.com>, Richard Paez <Richardp809@gmail.com>, Erick Grissom <grissomerick@gmail.com>, Harris Joseph <harris.joseph.088@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^3.5.1",
+    "nodemon": "^1.11.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "dotenv": "^5.0.1",
+    "express": "^4.16.3",
+    "fs": "^0.0.1-security",
+    "jsonwebtoken": "^8.2.1",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0",
+    "path": "^0.12.7",
+    "pg": "^7.4.1",
+    "sequelize": "^4.37.6",
+    "sequelize-cli": "^4.0.0",
+    "socket.io": "^2.1.0"
+  }
+}
