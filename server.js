@@ -30,9 +30,9 @@ app.get("*", function(req, res) {
 });
 
 // syncs the database and starts the server
-db.sequelize.sync().then( () => {
-   app.listen(PORT, function() {
-     console.log(`🌎 ==> Server now on port ${PORT}!`);
-   });
-
-})
+// FORCE TRUE IS ON DON'T FORGET TO TURN OFF 
+db.sequelize.sync({ force: true }).then(() => {
+  app.listen(PORT, function() {
+    console.log(`🌎 ==> Server now on port ${PORT}!`);
+  });
+});
