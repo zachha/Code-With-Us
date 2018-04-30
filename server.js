@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const userRoutes = require("./routes/userApi");
 // requires models to sync database
 const db = require("./models");
+const routes = require('./routes');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
@@ -20,7 +21,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // Add API routes
-app.use("/api/user", userRoutes);
+app.use(routes);
 
 // Send every request to the React app
 // Define any API routes before this runs
