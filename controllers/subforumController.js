@@ -21,4 +21,4 @@ module.exports = {
         .then(subforum => subforum.get({ plain: true }))
         .catch(err => console.log(err));
     }
-}
+};

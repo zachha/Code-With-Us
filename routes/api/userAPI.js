@@ -12,8 +12,8 @@ router.route("/:id")
     .get(userController.findAllPosts) // finds all of a user's posts
     .put(userController.updatePassword) // updates password
     .put(userController.updateEmail) // updates email
-    .put(userController.increaseRep) // increases specified user's reputation
-    .put(userController.decreaseRep) // decreases specified user's reputation
+    .put(userController.increaseReputation) // increases specified user's reputation
+    .put(userController.decreaseReputation) // decreases specified user's reputation
     .delete(userController.deleteUser); // deletes user    
 
 module.exports = router;

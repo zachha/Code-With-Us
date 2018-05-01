@@ -94,7 +94,7 @@ module.exports = {
       .then(user => 
          user.increment({
             reputation: 1
-        });
+        })
       )
       .then(thread => console.log("user has been updated"))
       .catch(err => console.log(err));
@@ -106,11 +106,12 @@ module.exports = {
       .then(user => 
          user.decrement({
             reputation: 1
-        });
+        })
       )
       .then(thread => console.log("user has been updated"))
       .catch(err => console.log(err));
-      
+  },      
+
   // allows a mod or the specified user to delete their information
   deleteUser: userId => {
       db.User.destroy({

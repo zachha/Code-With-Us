@@ -1,4 +1,4 @@
-module.exports = function(sequlize, DataTypes) {
+module.exports = function(sequelize, DataTypes) {
     const Post = sequelize.define("Post", {
         // timestamp added automatically in sequelize
         // creates the 'content' of the post

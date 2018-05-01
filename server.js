@@ -1,7 +1,6 @@
 const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
-const userRoutes = require("./routes/userApi");
 // requires models to sync database
 const db = require("./models");
 const routes = require('./routes');
@@ -25,9 +24,11 @@ app.use(routes);
 
 // Send every request to the React app
 // Define any API routes before this runs
+/*
 app.get("*", function(req, res) {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
+*/
 
 // syncs the database and starts the server
 // FORCE TRUE IS ON DON'T FORGET TO TURN OFF 

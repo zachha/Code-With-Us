@@ -6,3 +6,5 @@ router.route('/')
 
 router.route('/:id')
     .get(subforumController.findAllThreads); // finds all threads in the specified subforum
+
+module.exports = router;

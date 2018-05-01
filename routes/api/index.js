@@ -1,5 +1,8 @@
 const router = require ('express').Router();
 const userRoutes = require('./userAPI');
+const postRoutes = require('./postAPI');
+const threadRoutes = require('./threadAPI');
+const subforumRoutes = require('./subforumAPI');
 
 //user routes
 router.use('/api/user', userRoutes);

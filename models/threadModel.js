@@ -16,7 +16,7 @@ module.exports = function(sequelize, DataTypes) {
         },
         // Postive ratings of thread to be given by users
         Reputation: {
-            type: DataTypes.Integer,
+            type: DataTypes.INTEGER,
             allowNull: false
         }
     });

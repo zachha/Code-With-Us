@@ -34,7 +34,7 @@ module.exports = {
       .then(thread => 
          thread.increment({
             reputation: 1
-        });
+        })
       )
       .then(thread => console.log("thread has been updated"))
       .catch(err => console.log(err));
@@ -46,7 +46,7 @@ module.exports = {
       .then(thread => 
          thread.decrement({
             reputation: 1
-        });
+        })
       )
       .then(thread => console.log("thread has been updated"))
       .catch(err => console.log(err));

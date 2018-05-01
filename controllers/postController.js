@@ -13,11 +13,11 @@ module.exports = {
                     .get({ plain: true});
                 })
                 .then(data => db.User.findById(userId)
-                    .then(user => user.increment({ postCount: 1}));
+                    .then(user => user.increment({ postCount: 1}))
                 )
-                .catch(err => console.log(err));
+                .catch(err => console.log(err))
             )
-            .catch(err => console.log(err));
+            .catch(err => console.log(err))
         )
         .catch(err => console.log(err));
     },
