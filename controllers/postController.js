@@ -21,14 +21,9 @@ module.exports = {
 
     // Allows user or mod to update/edit a post
     editPost: (content, postId) => {
-        db.Post.update({
-            text: content
-        },
-    {
-        where: {
-            id: postId
-        }
-    })
+        db.Post.update({ text: content }, { where: { id: postId } })
+          .then(post => console.log("Post updated!"))
+          .catch(err => console.log(err));
     },
 
     // Allows user or mod to delete a post

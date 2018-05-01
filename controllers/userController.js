@@ -1,7 +1,7 @@
 const db = require('../models');
 
 module.exports = {
-    
+
   // function for user to create username and password for user authentication
   newUser: (email, userName, password) => {
     db.User.create({
@@ -64,11 +64,9 @@ module.exports = {
       where: {
         id: userId
       },
-      include: [
-        {
+      include: [{
           model: models.Posts
-        }
-      ]
+        }]
     })
       .then(user => user.get({ plain: true }))
       .catch(err => console.log(err));
@@ -78,12 +76,16 @@ module.exports = {
   findAllPosts: userId => {
       db.User.findAll({
         where: {
-            id: userId
+          id: userId
         },
-        include: [{
-            model: Post,
-        }]
-      });
+        include: [
+          {
+            model: Post
+          }
+        ]
+      })
+        .then(posts => posts.get({ plain: true }))
+        .catch(err => console.log(err));
   },
   // allows a mod or the specified user to delete their information
   deleteUser: userId => {
