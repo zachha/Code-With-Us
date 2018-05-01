@@ -23,7 +23,7 @@ module.exports = function(sequelize, DataTypes) {
         // user's picture (a default image will be given if none is entered by user)
         picture: DataTypes.STRING,
         // User's post count, displays how many posts they've entered on the site
-        postcount: {
+        postCount: {
             type: DataTypes.INTEGER,
             defaultValue: 0
         },

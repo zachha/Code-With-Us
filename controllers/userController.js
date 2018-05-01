@@ -87,6 +87,30 @@ module.exports = {
         .then(posts => posts.get({ plain: true }))
         .catch(err => console.log(err));
   },
+
+    // Allows users to increase rep of specified user for helpful answers
+  increaseReputation: userId => {
+      db.User.findById(userId)
+      .then(user => 
+         user.increment({
+            reputation: 1
+        });
+      )
+      .then(thread => console.log("user has been updated"))
+      .catch(err => console.log(err));
+  },
+
+  // Allows users to decrease rep of other users 
+  decreaseReputation: userId => {
+      db.User.findById(userId)
+      .then(user => 
+         user.decrement({
+            reputation: 1
+        });
+      )
+      .then(thread => console.log("user has been updated"))
+      .catch(err => console.log(err));
+      
   // allows a mod or the specified user to delete their information
   deleteUser: userId => {
       db.User.destroy({
