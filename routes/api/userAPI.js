@@ -9,6 +9,7 @@ router.route('/')
 
 router.route("/:id")
     .get(userController.findUser) // finds specific user
+    .get(userController.findAllPosts) // finds all of a user's posts
     .put(userController.updatePassword) // updates password
     .put(userController.updateEmail) // updates email
     .delete(userController.deleteUser); // deletes user    

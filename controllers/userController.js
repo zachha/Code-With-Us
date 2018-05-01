@@ -1,6 +1,7 @@
 const db = require('../models');
 
 module.exports = {
+    
   // function for user to create username and password for user authentication
   newUser: (email, userName, password) => {
     db.User.create({
@@ -12,6 +13,7 @@ module.exports = {
       .catch(err => console.log(err));
   },
 
+  // allows user to update their password
   updatePassword: (userId, password) => {
     db.User.update(
       {
@@ -29,6 +31,7 @@ module.exports = {
       .catch(err => console.log(err));
   },
 
+  // allows user to update their stored email address
   updateEmail: (userId, email) => {
     db.User.update(
       {
@@ -46,6 +49,7 @@ module.exports = {
       .catch(err => console.log(err));
   },
 
+  // finds all users and sorts them by most reputaiton to least
   findAll: () => {
     db.User.findAll({
       order: [["reputation", "DESC"]]
@@ -70,6 +74,18 @@ module.exports = {
       .catch(err => console.log(err));
   },
 
+  // Finds all of a user's posts
+  findAllPosts: userId => {
+      db.User.findAll({
+        where: {
+            id: userId
+        },
+        include: [{
+            model: Post,
+        }]
+      });
+  },
+  // allows a mod or the specified user to delete their information
   deleteUser: userId => {
       db.User.destroy({
           where: {
