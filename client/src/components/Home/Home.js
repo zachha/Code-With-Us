@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 
+import HomeFeed from './homeFeed';
+import UserBox from './user-box';
 export default class Home extends Component {
     render(){
         return (
-            <p className="app-intro">
-            To get started, edit <code>src/App.js</code> and save to reload.
-            </p>
+            <React.Fragment>
+                <HomeFeed />
+                <UserBox />
+            </React.Fragment>
         )
     }
 };
