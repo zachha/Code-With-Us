@@ -8,8 +8,8 @@ export default class Main extends Component {
         return (
             <div className="content-main">
                 <Switch>
-                    <Route exact path="/" render={() => (<Home />)}/>
-                    <Route exact path="/thread" render={() => (<Thread />)}/>
+                    <Route exact path="/" component={Home}/>
+                    <Route exact path="/thread" component={Thread}/>
                 </Switch>
             </div>
         )

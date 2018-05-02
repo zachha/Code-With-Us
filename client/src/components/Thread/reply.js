@@ -4,12 +4,11 @@ import Card, {CardHeader,CardContent} from "material-ui/Card";
 import TextField from 'material-ui/TextField';
 import Markdown from "react-markdown";
 import CodeBlock from "./code-block";
+import Button from "material-ui/Button";
+
 
 class Reply extends React.Component {
-    constructor(props){
-        super(props);
-        this.formSubmit.bind(this);
-    }
+
 
     state = {
         input : ""
@@ -17,40 +16,45 @@ class Reply extends React.Component {
 
     inputHandler = event => {
       this.setState({ input: event.target.value });
+      console.log(this.state.input);
       
     }
+
     formSubmit = event => {
-      this.posts.append({name:"Harris",title:"Another Post",markdown:this.input});
+        event.preventDefault()
+        this.props.action(this.state.input);
     }
+    
     render () {return(
-      
-    <Card>
+    <form className="reply-form" onSubmit={this.formSubmit}>   
+    <Card className="reply-card">
         <CardHeader
             avatar={
             <Avatar aria-label="Code With Us">
                 C
             </Avatar>
             }
-            title="Contribute to Thread"
+            title={
+                <Button type="submit"  variant="raised" color="primary">
+                Send
+              </Button>
+            }
             subheader="May 2, 2018"
         />
-        <CardContent> 
-
-          <form>    
+        <CardContent>            
             <TextField
                 multiline
                 hintText="Full width"
                 fullWidth={true}
                 onChange={this.inputHandler}
-            />
-          </form>
-          
+            />       
             <Markdown
                 source={this.state.input} 
                 renderers={{code:CodeBlock.Block,inlineCode:CodeBlock.InLine}}
             /> 
         </CardContent>
     </Card>
+    </form>
     );}
   }
 export default Reply;
