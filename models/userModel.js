@@ -36,7 +36,16 @@ module.exports = function(sequelize, DataTypes) {
         isModerator: {
             type: DataTypes.BOOLEAN,
             defaultValue: false
-        } 
+        },
+
+        // Allows users to report other users for breaking rules/posting inappropriate content
+        reports: {
+            type: DataTypes.TEXT,
+            validation: {
+                len: [1, 1000]
+                // protect against xss
+            }
+        }
     });
     return User;
 };
