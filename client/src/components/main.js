@@ -5,9 +5,11 @@ import Home from './Home/Home';
 export default class Main extends Component {
     render(){
         return (
-            <Switch>
-                <Route exact path="/" render={() => (<Home />)}/>
-            </Switch>
+            <div className="content-main">
+                <Switch>
+                    <Route exact path="/" render={() => (<Home />)}/>
+                </Switch>
+            </div>  
         )
     }
 };
