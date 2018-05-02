@@ -12,6 +12,10 @@ body {
   justify-content: space-between;
 }
 
+.thread-main{
+  width:100%;
+}
+
 .left-feed {
   width: 65%;
   padding: 15px;
