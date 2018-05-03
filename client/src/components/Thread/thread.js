@@ -18,16 +18,16 @@ class Thread extends React.Component {
                 user: "Harris",
                 title: "A Post",
                 markdown: `
-             ## How about some code? 
-             \`\`\` 
-             var React = require('react'); 
-             var Markdown = require('react-markdown'); 
-             React.render( \
-               <Markdown source="# Your markdown here" />, 
-               document.getElementById('content') 
-             ); 
-             \`\`\` 
-             `
+## How about some code? 
+\`\`\` 
+var React = require('react'); 
+var Markdown = require('react-markdown'); 
+React.render( \
+<Markdown source="# Your markdown here" />, 
+document.getElementById('content') 
+); 
+\`\`\`
+`
             }
 
         ]
@@ -48,7 +48,7 @@ class Thread extends React.Component {
         return (
             <Paper elevation={3} className="thread-main">
                
-                        <Typography variant="title">A Thread</Typography>
+                        <Typography className="thread-title" variant="display1">A Thread</Typography>
                         {this.state.posts.map(post => Post(post))}
                         <ExpansionPanel>
                     <ExpansionPanelSummary 
@@ -56,7 +56,7 @@ class Thread extends React.Component {
                     <Typography>Reply</Typography>                       
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails>
-                        <Reply action={this.newPost} />
+                        <Reply updateThreadFromChild={this.newPost} />
                     </ExpansionPanelDetails>
                 </ExpansionPanel>
             </Paper>

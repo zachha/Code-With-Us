@@ -12,6 +12,10 @@ body {
   justify-content: space-between;
 }
 
+.post-submit{
+  text-align:right;
+}
+
 .thread-main{
   width:100%;
 }

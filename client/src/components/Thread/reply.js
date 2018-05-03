@@ -8,12 +8,10 @@ import Button from "material-ui/Button";
 
 
 class Reply extends React.Component {
-
-
     state = {
         input : ""
     } 
-
+    
     inputHandler = event => {
       this.setState({ input: event.target.value });
       console.log(this.state.input);
@@ -22,21 +20,21 @@ class Reply extends React.Component {
 
     formSubmit = event => {
         event.preventDefault()
-        this.props.action(this.state.input);
+        this.props.updateThreadFromChild(this.state.input);
     }
     
     render () {return(
     <form className="reply-form" onSubmit={this.formSubmit}>   
     <Card className="reply-card">
-        <CardHeader
+        <CardHeader className="post-submit"
             avatar={
             <Avatar aria-label="Code With Us">
                 C
             </Avatar>
             }
             title={
-                <Button type="submit"  variant="raised" color="primary">
-                Send
+                <Button type="submit"  variant="raised" color="primary" >
+                Post
               </Button>
             }
             subheader="May 2, 2018"
