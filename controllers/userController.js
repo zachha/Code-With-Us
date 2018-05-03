@@ -6,7 +6,7 @@ module.exports = {
   newUser: (email, userName, password, res) => {
     db.User.create({
       email: email,
-      user_name: userName,
+      username: userName,
       password: password
     })
       .then(user => {
@@ -101,26 +101,32 @@ module.exports = {
   },
 
     // Allows users to increase rep of specified user for helpful answers
-  increaseReputation: userId => {
+  increaseReputation: (userId, res) => {
       db.User.findById(userId)
       .then(user => 
          user.increment({
             reputation: 1
         })
       )
-      .then(thread => console.log("user has been updated"))
+      .then(user => {
+        console.log("user has been updated");
+        res.json(user.get({ plain: true }));
+      })
       .catch(err => console.log(err));
   },
 
   // Allows users to decrease rep of other users 
-  decreaseReputation: userId => {
+  decreaseReputation: (userId, res) => {
       db.User.findById(userId)
       .then(user => 
          user.decrement({
             reputation: 1
         })
       )
-      .then(thread => console.log("user has been updated"))
+      .then(user => {
+        console.log("user has been updated");
+        res.json(user.get({ plain: true }));
+      })
       .catch(err => console.log(err));
   },      
 
@@ -137,5 +143,5 @@ module.exports = {
 };
 
 
-//module.exports.newUser("zach@email.com", "zach", "password");
-//module.exports.newUser("zach@email.com", "zach", "password");
+module.exports.newUser("zach@email.com", "zach", "password");
+module.exports.newUser("andy@email.com", "andy", "password2");

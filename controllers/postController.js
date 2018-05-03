@@ -2,8 +2,8 @@ const db = require('../models');
 
 module.exports = {
     // Creates a new post inside the associated thread, updates user's postcount and thread's postcount
-    newPost: (content, threadId, userId) => {
-        db.Post.create({ text: text })
+    newPost: (content, threadId, userId, res) => {
+        db.Post.create({ text: content.text })
         .then(post => 
             db.Thread.findById(threadId)
             .then(thread => thread.addPosts(post)
@@ -15,7 +15,7 @@ module.exports = {
                     .then(user => user.addPosts(post)
                         .then(user => {
                             user.increment({ postCount: 1})
-                            user.get({ plain: true});
+                            res.json(post.get({ plain: true}));
                         })
                         .catch(err => console.log(err))
                     )
@@ -29,20 +29,26 @@ module.exports = {
     },
 
     // Finds a specific post by id (can be used to quote specific posts)
-    findOnePost: (postId) => {
+    findOnePost: (postId, res) => {
         db.Post.findOne({
             where: {
                 id: postId
             }
         })
-        .then(user => user.get({ plain: true }))
+        .then(user => {
+            console.log(user.get({ plain: true }));
+            res.json(user.get({ plain: true }));
+        })
         .catch(err => console.log(err));
     },
 
     // Allows user or mod to update/edit a post
-    editPost: (content, postId) => {
+    editPost: (content, postId, res) => {
         db.Post.update({ text: content }, { where: { id: postId } })
-          .then(post => console.log("Post updated!"))
+          .then(post => {
+              console.log("Post updated!");
+              res.json(post.get({ plain: true }));
+          })
           .catch(err => console.log(err));
     },
 
@@ -53,3 +59,7 @@ module.exports = {
           .catch(err => console.log(err));
     }
 }
+
+
+let newObj = { text: "LOOK AT THIS NEW POST TEXT WOW"};
+module.exports.newPost(newObj, 2, 1);
