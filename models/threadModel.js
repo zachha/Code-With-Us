@@ -12,15 +12,33 @@ module.exports = function(sequelize, DataTypes) {
         // Post count to be displayed on subforum page
         postCount: {
             type: DataTypes.INTEGER,
-            allowNull: true
+            defaultValue: 0
         },
         // Postive ratings of thread to be given by users
         Reputation: {
             type: DataTypes.INTEGER,
-            allowNull: false
+            allowNull: false,
+            defaultValue: 1
         }
     });
-    // belongsToONe Subforum
-    // belongsToMany Users who 'save' the thread to view from their profile at any time
+
+    // associates thread with a subforum
+    Thread.associate = models => {
+        Thread.belongsTo(models.Subforum);
+        Thread.belongsTo(models.User);
+        Thread.hasMany(models.Post);
+    };
+    /*
+    // associates thread with user who created it
+    Thread.associate = models => {
+       
+    };
+
+    // associates thread with many possible posts
+    Thread.associate = models => {
+        
+    };
+    */
+
     return Thread;
 }

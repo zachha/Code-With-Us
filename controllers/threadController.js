@@ -3,14 +3,33 @@ const db = require('../models');
 module.exports = {
 
   // Find all threads
-  findAll: () => {
+  findAll: (res) => {
       db.Thread.findAll()
-      .then(threads => threads.get({ plain: true }))
+      .then(threads => {
+        console.log(threads.get({ plain: true }));
+        res.json(threads.get({ plain: true }));
+      })
       .catch(err => console.log(err));
   },
 
+  // Allows user to create new threads
+  newThread: (content, subforumId, userId) => {
+        db.Thread.create({ title: content.title })
+        .then(thread => 
+            db.User.findById(userId)
+            .then(user => user.addThread(post)
+                .then(data => db.Subforum.findById(subforumId)
+                    .then(subforum => subforum.addThread(post))
+                    .catch(err => console.log(err))  
+                )
+                .catch(err => console.log(err))
+            )
+            .catch(err => console.log(err))
+        )
+        .catch(err => console.log(err));
+    },
   // Finds all posts for the associated thread
-  findAllThreadPosts: threadId => {
+  findAllThreadPosts: (threadId, res) => {
     db.Thread.findAll({
       where: { id: threadId },
       include: [
@@ -24,7 +43,10 @@ module.exports = {
         }
       ]
     })
-      .then(threads => threads.get({ plain: true }))
+      .then(threads => {
+        console.log(threads.get({ plain: true }));
+        res.json(threads.get({ plain: true }));
+      })
       .catch(err => console.log(err));
   },
 
