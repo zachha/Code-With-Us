@@ -4,7 +4,7 @@ import ExpansionPanel, {
   ExpansionPanelSummary,
   ExpansionPanelDetails,
 } from 'material-ui/ExpansionPanel'
-import { ExpandMore } from '@material-ui/icons/';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Typography from 'material-ui/Typography';
 import Post from "../Post/post";
 import Reply from "../Reply/reply";
@@ -52,7 +52,7 @@ class Thread extends React.Component {
                         {this.state.posts.map(post => Post(post))}
                         <ExpansionPanel>
                     <ExpansionPanelSummary 
-                    expandIcon={<ExpandMore />}> 
+                    expandIcon={<ExpandMoreIcon />}> 
                     <Typography>Reply</Typography>                       
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails>
