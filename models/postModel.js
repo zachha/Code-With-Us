@@ -9,7 +9,15 @@ module.exports = function(sequelize, DataTypes) {
             }
         }
     });
-    // will be associated to the User who creates post AND possibly other users who 'save' the post
-    // belongsToOne thread the post is in
+
+
+    // associates posts with the user that creates them
+    // associates posts with the thread they are created in
+    Post.associate = models => {
+        Post.belongsTo(models.User);
+        Post.belongsTo(models.Thread);
+    };
+    
+
     return Post;
 }

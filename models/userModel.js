@@ -1,7 +1,13 @@
 module.exports = function(sequelize, DataTypes) {
     const User = sequelize.define("User", {
         // user's username as defined during user registration
-        username: DataTypes.STRING,
+        username: {
+            type: DataTypes.STRING,
+            unique: true,
+            validate: {
+                len: [1, 50]
+            }
+        },
         // user's password as defined during user registration
         password: {
             type: DataTypes.STRING,
@@ -15,6 +21,7 @@ module.exports = function(sequelize, DataTypes) {
         email: {
             type: DataTypes.STRING,
             allowNull: false,
+            unique: true,
             validate: {
                 len: [1, 254],
                 isEmail: true
@@ -36,11 +43,34 @@ module.exports = function(sequelize, DataTypes) {
         isModerator: {
             type: DataTypes.BOOLEAN,
             defaultValue: false
-        } 
+        },
+
+        // Allows users to report other users for breaking rules/posting inappropriate content
+        reports: {
+            type: DataTypes.TEXT,
+            validation: {
+                len: [1, 1000]
+                // protect against xss
+            }
+        }
     });
+
+    // users associated with the posts that they create
+    User.associate = function(models) {
+        User.hasMany(models.Post);
+        User.hasMany(models.Thread);
+    };
+
+    /*
+    // users associated with the threads that they create
+    User.associate = function(models) {
+        
+    };
+    */
+
     return User;
 };
 
+
 // will associate with other Users to 'follow' them
-// will associate with comments to 'own' them
-// will associate with threads to 'favorite'/'save' them
+
