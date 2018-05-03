@@ -2,12 +2,36 @@ body {
   font-family: Roboto, sans-serif;
 }
 
-.app {
-  padding-top: 60px;
+.menu-bar .menu-icon {
+  position: absolute;
+  left: 38px;
+  top: 40px;
+  color: #1565C0;
+}
+
+.menu-bar h2 {
+  font-family: 'Pacifico', cursive;
+  font-size: 40px;
+  text-align: center;
+  color: #1565C0;
+  margin: 15px auto;
+}
+
+.drawer-main {
+  width: 250px;
+}
+
+.drawer-header {
+  background-color: #1565C0;
+  color: #FFFFFF;
+  margin: 0;
+  padding: 20px;
+  font-weight: normal;
+  text-align: center;
 }
 
 .content-main {
-  margin: 30px 25px 0 25px;
+  margin: 0 25px;
   display: flex;
   justify-content: space-between;
 }
@@ -28,5 +52,22 @@ body {
 .user-box {
   width: 30%;
   padding: 15px;
-  min-height: 800px; /* for testing */
+  height: 350px; /* for testing */
+}
+
+@media screen and (max-width: 1400px) {
+  .left-feed {
+    width: 60%; 
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .content-main {
+    flex-wrap: wrap;
+  }
+  
+  .user-box, .left-feed {
+    width: 100%;
+    margin-bottom: 30px;
+  }
 }

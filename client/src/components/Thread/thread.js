@@ -6,8 +6,8 @@ import ExpansionPanel, {
 } from 'material-ui/ExpansionPanel'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Typography from 'material-ui/Typography';
-import Post from "./post";
-import Reply from "./reply";
+import Post from "../Post/post";
+import Reply from "../Reply/reply";
 
 class Thread extends React.Component {
     state = {
