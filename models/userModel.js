@@ -47,9 +47,23 @@ module.exports = function(sequelize, DataTypes) {
             }
         }
     });
+
+    // users associated with the posts that they create
+    User.associate = function(models) {
+        User.hasMany(models.Post);
+        User.hasMany(models.Thread);
+    };
+
+    /*
+    // users associated with the threads that they create
+    User.associate = function(models) {
+        
+    };
+    */
+
     return User;
 };
 
+
 // will associate with other Users to 'follow' them
-// will associate with comments to 'own' them
-// will associate with threads to 'favorite'/'save' them
+

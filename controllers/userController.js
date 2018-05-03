@@ -3,13 +3,16 @@ const db = require('../models');
 module.exports = {
 
   // function for user to create username and password for user authentication
-  newUser: (email, userName, password) => {
+  newUser: (email, userName, password, res) => {
     db.User.create({
       email: email,
       user_name: userName,
       password: password
     })
-      .then(data => console.log(data.dataValues))
+      .then(user => {
+        console.log(user.get({ plain: true }));
+        res.json(user.get({ plain: true }));
+      })
       .catch(err => console.log(err));
   },
 
@@ -50,16 +53,19 @@ module.exports = {
   },
 
   // finds all users and sorts them by most reputaiton to least
-  findAll: () => {
+  findAll: (res) => {
     db.User.findAll({
       order: [["reputation", "DESC"]]
     })
-      .then(users => console.log(users))
+      .then(users => {
+        console.log(user.get({ plain: true }));
+        res.json(users.get({ plain: true }));
+      })
       .catch(err => console.log(err));
   },
 
   // Allows user to find another user by their user name
-  findUser: userId => {
+  findUser: (userId, res) => {
     db.User.findOne({
       where: {
         id: userId
@@ -68,12 +74,15 @@ module.exports = {
           model: models.Posts
         }]
     })
-      .then(user => user.get({ plain: true }))
+      .then(user => {
+        console.log(user.get({ plain: true }));
+        res.json(user.get({ plain: true }));
+      })
       .catch(err => console.log(err));
   },
 
   // Finds all of a user's posts
-  findAllPosts: userId => {
+  findAllPosts: (userId, res) => {
       db.User.findAll({
         where: {
           id: userId
@@ -84,7 +93,10 @@ module.exports = {
           }
         ]
       })
-        .then(posts => posts.get({ plain: true }))
+        .then(userPosts => {
+        console.log(userPosts.get({ plain: true }));
+        res.json(userPosts.get({ plain: true }));
+      })
         .catch(err => console.log(err));
   },
 
@@ -123,3 +135,7 @@ module.exports = {
       .catch(err => console.log(err));
   }
 };
+
+
+//module.exports.newUser("zach@email.com", "zach", "password");
+//module.exports.newUser("zach@email.com", "zach", "password");
