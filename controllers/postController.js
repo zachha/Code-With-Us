@@ -61,5 +61,5 @@ module.exports = {
 }
 
 
-let newObj = { text: "LOOK AT THIS NEW POST TEXT WOW"};
-module.exports.newPost(newObj, 2, 1);
+//let newObj = { text: "LOOK AT THIS NEW POST TEXT WOW"};
+//module.exports.newPost(newObj, 2, 1);

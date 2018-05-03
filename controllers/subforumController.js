@@ -42,4 +42,4 @@ module.exports = {
     }
 };
 
-module.exports.createSubforum("Javascript");
+//module.exports.createSubforum("Javascript");

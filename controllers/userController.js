@@ -143,5 +143,5 @@ module.exports = {
 };
 
 
-module.exports.newUser("zach@email.com", "zach", "password");
-module.exports.newUser("andy@email.com", "andy", "password2");
+//module.exports.newUser("zach@email.com", "zach", "password");
+//module.exports.newUser("andy@email.com", "andy", "password2");
