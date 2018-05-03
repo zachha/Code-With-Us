@@ -15,7 +15,7 @@ module.exports = function(sequelize, DataTypes) {
             defaultValue: 0
         },
         // Postive ratings of thread to be given by users
-        Reputation: {
+        reputation: {
             type: DataTypes.INTEGER,
             allowNull: false,
             defaultValue: 1
@@ -28,17 +28,6 @@ module.exports = function(sequelize, DataTypes) {
         Thread.belongsTo(models.User);
         Thread.hasMany(models.Post);
     };
-    /*
-    // associates thread with user who created it
-    Thread.associate = models => {
-       
-    };
-
-    // associates thread with many possible posts
-    Thread.associate = models => {
-        
-    };
-    */
 
     return Thread;
 }
