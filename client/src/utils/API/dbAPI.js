@@ -9,7 +9,7 @@ export default {
     },
 
     // creates a new user
-    createUser: (email, userName, password) => {
+    createUser: (email, userName, password, res) => {
         return axios.post('/api/user');
     },
 
@@ -34,12 +34,12 @@ export default {
     },
 
     // increases specified user's reputation
-    increaseUserRep: userId => {
+    increaseUserRep: (userId, res) => {
         return axios.put('/api/user/' +id);
     },
 
     // decreases specified user's reputation
-    decreaseUserRep: userId => {
+    decreaseUserRep: (userId, res) => {
         return axios.put('/api/user/' +id);
     },
 
@@ -50,7 +50,7 @@ export default {
     // THREAD //
 
     // Creates a new thread to be associated with a user and subforum
-    createThread: (content, subforumId, userId) => {
+    createThread: (content, subforumId, userId, res) => {
         return axios.post('/api/thread')
     },
 
@@ -65,29 +65,29 @@ export default {
     },
 
     // updates the thread's reputation by +1
-    increaseThreadRep: threadId => {
+    increaseThreadRep: (threadId, res) => {
         return axios.post('/api/thread/' + id);
     },
 
     // updates the thread's reputation by -1
-    decreaseThreadRep: threadId => {
+    decreaseThreadRep: (threadId, res) => {
         return axios.post('api/thread' +id);
     },
 
     // POST //
 
     // allows user to create new post that will be associated with the thread it is in
-    createPost: (content, threadId, userId) => {
+    createPost: (content, threadId, userId, res) => {
         return axios.post('/api/post');
     },
 
     // gets the specified post
-    getPost: postId => {
+    getPost: (postId, res) => {
         return axios.get('/api/post');
     },
 
     // allows user or moderator to edit specified post
-    editPost: postId => {
+    editPost: (postId, res) => {
         return axios.put('/api/post');
     },
 
@@ -98,8 +98,13 @@ export default {
 
     // SUBFORUM //
 
+    // Allows Moderator to create new Subforum
+    createSubforum: (category, res) => {
+        return axios.get('/api/subforum');
+    },
+
     // returns all the subforums in the specified category
-    getSubforumByCategory: subforumId => {
+    getSubforumByCategory: (subforumId, res) => {
         return axios.get('/api/subforum');
     },
 
