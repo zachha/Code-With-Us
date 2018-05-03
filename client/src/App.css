@@ -17,6 +17,19 @@ body {
   margin: 15px auto;
 }
 
+.drawer-main {
+  width: 250px;
+}
+
+.drawer-header {
+  background-color: #1565C0;
+  color: #FFFFFF;
+  margin: 0;
+  padding: 20px;
+  font-weight: normal;
+  text-align: center;
+}
+
 .content-main {
   margin: 0 25px;
   display: flex;
