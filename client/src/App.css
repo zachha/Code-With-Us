@@ -2,12 +2,23 @@ body {
   font-family: Roboto, sans-serif;
 }
 
-.app {
-  padding-top: 60px;
+.menu-bar .menu-icon {
+  position: absolute;
+  left: 38px;
+  top: 40px;
+  color: #1565C0;
+}
+
+.menu-bar h2 {
+  font-family: 'Pacifico', cursive;
+  font-size: 40px;
+  text-align: center;
+  color: #1565C0;
+  margin: 15px auto;
 }
 
 .content-main {
-  margin: 30px 25px 0 25px;
+  margin: 0 25px;
   display: flex;
   justify-content: space-between;
 }

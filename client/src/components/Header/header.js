@@ -1,17 +1,23 @@
 import React from 'react';
-import AppBar from 'material-ui/AppBar';
-import Toolbar from 'material-ui/Toolbar';
-import Typography from 'material-ui/Typography';
 
-const Header = () => {
+import MenuIcon from '@material-ui/icons/Menu';
+
+import MenuDrawer from './menuDrawer';
+
+const Header = props => {
     return (
-        <AppBar>
-            <Toolbar>
-                <Typography variant="title" color="inherit">
-                Code With Us
-                </Typography>
-            </Toolbar>
-        </AppBar>
+        <React.Fragment>
+            <div 
+                className="menu-bar"
+                onClick={props.onOpenDrawer} >
+                <MenuIcon 
+                    className="menu-icon" />
+                <h2>Code With Us</h2>
+            </div>
+            <MenuDrawer 
+                open={props.isMenuOpen}
+                onCloseDrawer={props.onCloseDrawer}/>
+        </React.Fragment>
     )
 };
 
