@@ -7,8 +7,8 @@ module.exports = {
       db.Thread.findAll()
       .then(threads => {
         threads.forEach((thread) => {
-          console.log(thread[0].get({ plain: true }));
-        res.json(thread[0].get({ plain: true }));
+          console.log(thread.get({ plain: true }));
+          res.json(thread.get({ plain: true }));
         })
       })
       .catch(err => console.log(err));
@@ -36,17 +36,10 @@ module.exports = {
     },
   // Finds all posts for the associated thread
   findAllThreadPosts: (threadId, res) => {
-    db.Thread.findAll({
+    db.Thread.findOne({
       where: { id: threadId },
       include: [
-        {
-          model: Post,
-          /*
-          where: {
-            threadId: threadId
-          }
-          */
-        }
+        {model: db.Post}
       ]
     })
       .then(threads => {
@@ -87,4 +80,3 @@ module.exports = {
   }
 
 };
-

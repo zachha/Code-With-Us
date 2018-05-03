@@ -9,6 +9,7 @@ module.exports = {
             .then(thread => thread.addPosts(post)
                 .then(thread => {
                     console.log("new post created in thread")
+                    console.log(post.get({ plain: true }))
                     thread.increment({ postCount: 1})
                 })
                 .then(data => db.User.findById(userId)
@@ -44,22 +45,21 @@ module.exports = {
 
     // Allows user or mod to update/edit a post
     editPost: (content, postId, res) => {
-        db.Post.update({ text: content }, { where: { id: postId } })
+        db.Post.update({ text: content.text }, { where: { id: postId } })
           .then(post => {
               console.log("Post updated!");
-              res.json(post.get({ plain: true }));
           })
           .catch(err => console.log(err));
     },
 
     // Allows user or mod to delete a post
     deletePost: (postid) => {
-        db.Post.destroy({ where: { id: id } })
+        db.Post.destroy({ where: { id: postid } })
           .then(user => console.log("Post has been deleted"))
           .catch(err => console.log(err));
     }
 }
 
 
-//let newObj = { text: "LOOK AT THIS NEW POST TEXT WOW"};
-//module.exports.newPost(newObj, 2, 1);
+let newObj = { text: "THIRD POST"};
+module.exports.newPost(newObj, 1, 1);

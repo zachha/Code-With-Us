@@ -58,8 +58,10 @@ module.exports = {
       order: [["reputation", "DESC"]]
     })
       .then(users => {
-        console.log(user.get({ plain: true }));
-        res.json(users.get({ plain: true }));
+        users.forEach((user) => {
+          console.log(user.get({ plain: true }));
+          res.json(user.get({ plain: true }));
+        })
       })
       .catch(err => console.log(err));
   },
@@ -70,9 +72,10 @@ module.exports = {
       where: {
         id: userId
       },
-      include: [{
-          model: models.Posts
-        }]
+      include: [
+        { model: db.Post },
+        { model: db.Thread }
+      ]
     })
       .then(user => {
         console.log(user.get({ plain: true }));
@@ -89,13 +92,13 @@ module.exports = {
         },
         include: [
           {
-            model: Post
+            model: db.Post
           }
         ]
       })
         .then(userPosts => {
-        console.log(userPosts.get({ plain: true }));
-        res.json(userPosts.get({ plain: true }));
+            console.log((userPosts.get({ plain: true })).Posts);
+            res.json((userPosts.get({ plain: true })).Posts);
       })
         .catch(err => console.log(err));
   },
@@ -145,3 +148,5 @@ module.exports = {
 
 //module.exports.newUser("zach@email.com", "zach", "password");
 //module.exports.newUser("andy@email.com", "andy", "password2");
+module.exports.findUser(1);
+

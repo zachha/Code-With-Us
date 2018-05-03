@@ -18,8 +18,10 @@ module.exports = {
     findByCategory: (category, res) => {
         db.Subforum.findAll({ where: { category: category } })
           .then(subforums => {
-              console.log(subforums.get({ plain: true }));
-              res.json(subforums.get({ plain: true }));
+              subforums.forEach((subforum) => {
+                console.log(subforums.get({ plain: true }));
+                res.json(subforums.get({ plain: true }));
+              })
           })
           .catch(err => console.log(err));
     },
@@ -31,7 +33,7 @@ module.exports = {
                 id: subforumId
             },
             include: [{
-                model: Thread
+                model: db.Thread
             }]
         })
         .then(subforum => {
@@ -42,4 +44,4 @@ module.exports = {
     }
 };
 
-//module.exports.createSubforum("Javascript");
+module.exports.findAllThreads(1);
