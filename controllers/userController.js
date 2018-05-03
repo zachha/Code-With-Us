@@ -3,13 +3,16 @@ const db = require('../models');
 module.exports = {
 
   // function for user to create username and password for user authentication
-  newUser: (email, userName, password) => {
+  newUser: (email, userName, password, res) => {
     db.User.create({
       email: email,
-      user_name: userName,
+      username: userName,
       password: password
     })
-      .then(data => console.log(data.dataValues))
+      .then(user => {
+        console.log(user.get({ plain: true }));
+        res.json(user.get({ plain: true }));
+      })
       .catch(err => console.log(err));
   },
 
@@ -50,65 +53,83 @@ module.exports = {
   },
 
   // finds all users and sorts them by most reputaiton to least
-  findAll: () => {
+  findAll: (res) => {
     db.User.findAll({
       order: [["reputation", "DESC"]]
     })
-      .then(users => console.log(users))
+      .then(users => {
+        users.forEach((user) => {
+          console.log(user.get({ plain: true }));
+          res.json(user.get({ plain: true }));
+        })
+      })
       .catch(err => console.log(err));
   },
 
   // Allows user to find another user by their user name
-  findUser: userId => {
+  findUser: (userId, res) => {
     db.User.findOne({
       where: {
         id: userId
       },
-      include: [{
-          model: models.Posts
-        }]
+      include: [
+        { model: db.Post },
+        { model: db.Thread }
+      ]
     })
-      .then(user => user.get({ plain: true }))
+      .then(user => {
+        console.log(user.get({ plain: true }));
+        res.json(user.get({ plain: true }));
+      })
       .catch(err => console.log(err));
   },
 
   // Finds all of a user's posts
-  findAllPosts: userId => {
+  findAllPosts: (userId, res) => {
       db.User.findAll({
         where: {
           id: userId
         },
         include: [
           {
-            model: Post
+            model: db.Post
           }
         ]
       })
-        .then(posts => posts.get({ plain: true }))
+        .then(userPosts => {
+            console.log((userPosts.get({ plain: true })).Posts);
+            res.json((userPosts.get({ plain: true })).Posts);
+      })
         .catch(err => console.log(err));
   },
 
     // Allows users to increase rep of specified user for helpful answers
-  increaseReputation: userId => {
+  increaseReputation: (userId, res) => {
       db.User.findById(userId)
       .then(user => 
          user.increment({
             reputation: 1
         })
       )
-      .then(thread => console.log("user has been updated"))
+      .then(user => {
+        console.log("user has been updated");
+        res.json(user.get({ plain: true }));
+      })
       .catch(err => console.log(err));
   },
 
   // Allows users to decrease rep of other users 
-  decreaseReputation: userId => {
+  decreaseReputation: (userId, res) => {
       db.User.findById(userId)
       .then(user => 
          user.decrement({
             reputation: 1
         })
       )
-      .then(thread => console.log("user has been updated"))
+      .then(user => {
+        console.log("user has been updated");
+        res.json(user.get({ plain: true }));
+      })
       .catch(err => console.log(err));
   },      
 
@@ -123,3 +144,9 @@ module.exports = {
       .catch(err => console.log(err));
   }
 };
+
+
+//module.exports.newUser("zach@email.com", "zach", "password");
+//module.exports.newUser("andy@email.com", "andy", "password2");
+module.exports.findUser(1);
+
