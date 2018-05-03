@@ -2,18 +2,24 @@ const db = require('../models');
 
 module.exports = {
     // Creates a new post inside the associated thread, updates user's postcount and thread's postcount
-    newPost: (content, threadId) => {
+    newPost: (content, threadId, userId) => {
         db.Post.create({ text: text })
-          .then(post => 
+        .then(post => 
             db.Thread.findById(threadId)
             .then(thread => thread.addPosts(post)
                 .then(thread => {
                     console.log("new post created in thread")
                     thread.increment({ postCount: 1})
-                    .get({ plain: true});
                 })
                 .then(data => db.User.findById(userId)
-                    .then(user => user.increment({ postCount: 1}))
+                    .then(user => user.addPosts(post)
+                        .then(user => {
+                            user.increment({ postCount: 1})
+                            user.get({ plain: true});
+                        })
+                        .catch(err => console.log(err))
+                    )
+                    .catch(err => console.log(err))  
                 )
                 .catch(err => console.log(err))
             )
