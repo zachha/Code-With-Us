@@ -6,49 +6,33 @@ import ExpansionPanel, {
 } from 'material-ui/ExpansionPanel'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Typography from 'material-ui/Typography';
-import Post from "../Post/post";
-import Reply from "../Reply/reply";
+import Post from "./post";
+import Reply from "./reply";
+import { getAllThreadPosts} from "../../utils/API/dbAPI";
 
 class Thread extends React.Component {
-    state = {
-        totalPosts:1,
-        posts: [
-            {
-                id:1,
-                user: "Harris",
-                title: "A Post",
-                markdown: `
-             ## How about some code? 
-             \`\`\` 
-             var React = require('react'); 
-             var Markdown = require('react-markdown'); 
-             React.render( \
-               <Markdown source="# Your markdown here" />, 
-               document.getElementById('content') 
-             ); 
-             \`\`\` 
-             `
-            }
-
-        ]
+  
+    state={
+        posts:[]
     }
-    newPost = input => {     
-        console.log(this.state.posts);
-        this.setState({totalPosts:this.totalPosts+=1});
-        this.setState(old => ({
-            posts:[...old.posts,{
-            id:this.state.totalPosts,
-            user:"Harris",
-            title:"Another Post",
-            markdown:input
-            }]
-        }));
+
+    componentDidMount = () => {
+        this.loadPosts();
       }
+    
+    
+    loadPosts = () => 
+      getAllThreadPosts(1)
+      .then(res=>{
+          console.log(res);
+          this.setState({posts:res})
+      });
+
     render() {
         return (
             <Paper elevation={3} className="thread-main">
                
-                        <Typography variant="title">A Thread</Typography>
+                        <Typography className="thread-title" variant="display1">A Thread</Typography>
                         {this.state.posts.map(post => Post(post))}
                         <ExpansionPanel>
                     <ExpansionPanelSummary 
@@ -56,7 +40,7 @@ class Thread extends React.Component {
                     <Typography>Reply</Typography>                       
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails>
-                        <Reply action={this.newPost} />
+                        <Reply threadId={1} />
                     </ExpansionPanelDetails>
                 </ExpansionPanel>
             </Paper>

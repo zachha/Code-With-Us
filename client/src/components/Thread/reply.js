@@ -5,6 +5,7 @@ import TextField from 'material-ui/TextField';
 import Markdown from "react-markdown";
 import CodeBlock from "./code-block";
 import Button from "material-ui/Button";
+import { createPost} from "../../utils/API/dbAPI";
 
 
 class Reply extends React.Component {
@@ -19,8 +20,7 @@ class Reply extends React.Component {
     }
 
     formSubmit = event => {
-        event.preventDefault()
-        this.props.updateThreadFromChild(this.state.input);
+        createPost(this.state.input,this.props.threadId,1);
     }
     
     render () {return(

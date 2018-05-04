@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Home from './Home/Home';
-import Thread from './Thread/thread';
+import Thread from './Thread/Thread';
 
 export default class Main extends Component {
     render(){

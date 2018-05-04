@@ -9,16 +9,16 @@ const Post = post => (
     <Card>
         <CardHeader
             avatar={
-            <Avatar aria-label={post.user}>
-                {post.user[0]}
+            <Avatar aria-label={post.user.username}>
+                {post.user.username[0]}
             </Avatar>
             }
             title={post.title}
-            subheader={post.user}
+            subheader={post.user.username}
         />
         <CardContent>        
             <Markdown
-                source={post.markdown} 
+                source={post.text} 
                 renderers={{code:CodeBlock.Block,inlineCode:CodeBlock.InLine}}
             /> 
         </CardContent>

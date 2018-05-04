@@ -39,7 +39,10 @@ module.exports = {
     db.Thread.findOne({
       where: { id: threadId },
       include: [
-        {model: db.Post}
+        {
+          model: db.Post,
+          include:[db.User]
+        }
       ]
     })
       .then(threads => {

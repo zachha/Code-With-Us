@@ -5,15 +5,15 @@ const threadRoutes = require('./threadAPI');
 const subforumRoutes = require('./subforumAPI');
 
 //user routes
-router.use('/api/user', userRoutes);
+router.use('/user', userRoutes);
 
 //post routes
-router.use('/api/post', postRoutes);
+router.use('/post', postRoutes);
 
 //thread routes
-router.use('/api/thread', threadRoutes);
+router.use('/thread', threadRoutes);
 
 //subforum routes
-router.use('/api/subforum', subforumRoutes);
+router.use('/subforum', subforumRoutes);
 
 module.exports = router;
