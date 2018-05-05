@@ -3,14 +3,9 @@ const db = require('../models');
 module.exports = {
 
   // Find all threads
-  findAll: (res) => {
-      db.Thread.findAll()
-      .then(threads => {
-        threads.forEach((thread) => {
-          console.log(thread.get({ plain: true }));
-          res.json(thread.get({ plain: true }));
-        })
-      })
+  findAll: (req,res) => {
+      db.Thread.findAll({raw:true})
+      .then(threads => res.json(threads))
       .catch(err => console.log(err));
   },
 
@@ -42,7 +37,7 @@ module.exports = {
       include: [
         {
           model: db.Post,
-          include:[db.User]
+          include:[{model:db.User,attributes:["username"]}]
         }
       ]
     })

@@ -2,6 +2,16 @@ const db = require('../models');
 
 module.exports = {
 
+    //finds all the subforums for main feed
+    findAll: (req,res) => {
+        db.Subforum.findAll({raw:true})
+        .then(subforums =>{
+            console.log(subforums);
+          res.json({subforums:subforums});
+        })
+
+    },
+
     // Allows Moderator to create a new subforum
     createSubforum: (req, res) => {
         db.Subforum.create({
@@ -16,15 +26,12 @@ module.exports = {
 
     // Finds all subforums in the specified category (i.e. 'Back-end' could show subforums for Node.js, Ruby on Rails, etc..)
     findByCategory: (req, res) => {
-        db.Subforum.findAll({ where: { category: req.params.category } })
-          .then(subforums => {
-              subforums.forEach((subforum) => {
-                console.log(subforums.get({ plain: true }));
-                res.json(subforums.get({ plain: true }));
-              })
-          })
+        db.Subforum.findAll({ where: { category: req.params.category }, raw:true })
+          .then(subforums => res.json(subforums))
           .catch(err => console.log(err));
     },
+
+
 
     // Finds all threads for a specified subforum
     findAllThreads: (req, res) => {
@@ -34,7 +41,7 @@ module.exports = {
             },
             include: [{
                 model: db.Thread,
-                include: [db.User]
+                include: [{model:db.User,attibutes:["username"]}]
             }]
         })
         .then(subforum => {

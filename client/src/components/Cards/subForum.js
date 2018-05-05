@@ -5,7 +5,7 @@ import Card, {CardHeader,CardContent} from "material-ui/Card";
 import Typography from 'material-ui/Typography';
 
 const Subforum = subForum => (
-    <Link to={`/subForum/${subForum.id}`}>
+    <Link to={`/forum/${subForum.id}`}>
         <Card>
             <CardHeader
                 avatar={

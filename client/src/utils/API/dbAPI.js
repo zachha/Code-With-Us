@@ -95,9 +95,14 @@ export function deletePost (postId) {
 
 // SUBFORUM //
 
+//returns all the subforums
+export function getAllSubForums () {
+    return axios.get('api/subforum');
+}
+
 // Allows Moderator to create new Subforum
-export function createSubforum (category) {
-    return axios.get('/api/subforum');
+export function createSubforum (newForum) {
+    return axios.post('/api/subforum',newForum);
 }
 
 // returns all the subforums in the specified category

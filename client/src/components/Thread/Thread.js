@@ -30,7 +30,7 @@ class Thread extends React.Component {
 
     render() {
         return (
-            <Paper elevation={3} className="thread-main">
+            <Paper elevation={3} className="left-feed">
                
                 <Typography className="thread-title" variant="display1">{this.state.title}</Typography>
                 {this.state.Posts.map(post => Post(post))}
