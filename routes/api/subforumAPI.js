@@ -2,6 +2,8 @@ const router = require('express').Router();
 const subforumController = require('../../controllers/subforumController');
 
 // Matches '/api/subforum'
+router.route('/')
+    .get(subforumController.findAll);
 router.route('/:?category')
     .get(subforumController.findByCategory) // finds all subforums in specified category
     .post(subforumController.createSubforum); // Allows Moderator to create a new Subforum

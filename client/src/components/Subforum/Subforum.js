@@ -20,7 +20,7 @@ class Subforum extends React.Component {
         );
 
     render () {return (
-        <Paper elevation={3} className="thread-main">
+        <Paper elevation={3} className="left-feed">
            
             <Typography className="thread-title" variant="display1">{this.state.category}</Typography>
             {this.state.Threads.map(thread => Thread(thread))}

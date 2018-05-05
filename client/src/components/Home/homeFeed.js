@@ -1,15 +1,13 @@
 import React from 'react';
+import Subforum from '../Subforum/Subforum';
+import Thread from '../Thread/Thread';
+import SubForums from '../SubFeed/Subforums';
 
-import Paper from 'material-ui/Paper';
-import Typography from 'material-ui/Typography';
-
-const HomeFeed = (props) => {        
-    return (
-        <Paper elevation={3} className="left-feed">
-            <Typography variant="title">Home feed</Typography>
-
-        </Paper>        
-    )
-};
+const HomeFeed = (props) =>{console.log(props); return props.props.threadId ?
+     <Thread userId={props.userId} threadId={props.props.threadId}/>: 
+     props.props.forumId ? 
+     <Subforum forumId={props.props.forumId}/> : 
+     <SubForums />
+}
 
 export default HomeFeed;
