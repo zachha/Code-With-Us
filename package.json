@@ -8,7 +8,8 @@
     "client": "node scripts/start-client",
     "start": "concurrently \"node server\"  \"yarn client\"",
     "build": "node scripts/build.js",
-    "test": "echo\"Error: no test specified\" && exit 1"
+    "test": "echo\"Error: no test specified\" && exit 1",
+    "seed": "node seedDB.js"
   },
   "repository": "git@github.com:zachha/Code-With-Us.git",
   "author": "Zach Harmon <zachha@gmail.com>, Richard Paez <Richardp809@gmail.com>, Erick Grissom <grissomerick@gmail.com>, Harris Joseph <harris.joseph.088@gmail.com>",
@@ -25,6 +26,7 @@
     "express": "^4.16.3",
     "fs": "^0.0.1-security",
     "jsonwebtoken": "^8.2.1",
+    "mysql": "^2.15.0",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
