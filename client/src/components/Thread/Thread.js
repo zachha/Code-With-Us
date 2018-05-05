@@ -6,41 +6,40 @@ import ExpansionPanel, {
 } from 'material-ui/ExpansionPanel'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Typography from 'material-ui/Typography';
-import Post from "./post";
+import Post from "../Cards/post";
 import Reply from "./reply";
 import { getAllThreadPosts} from "../../utils/API/dbAPI";
 
 class Thread extends React.Component {
   
     state={
-        posts:[]
+        threadId:this.props.threadId,
+        Posts:[]
     }
 
-    componentDidMount = () => {
-        this.loadPosts();
-      }
+    componentDidMount = () => this.loadPosts();
     
     
     loadPosts = () => 
-      getAllThreadPosts(1)
-      .then(res=>{
-          console.log(res);
-          this.setState({posts:res})
+      getAllThreadPosts(this.state.threadId)
+      .then(res=>{         
+          this.setState(res.data);
+          console.log(this.state,"STATE");
       });
 
     render() {
         return (
             <Paper elevation={3} className="thread-main">
                
-                        <Typography className="thread-title" variant="display1">A Thread</Typography>
-                        {this.state.posts.map(post => Post(post))}
-                        <ExpansionPanel>
+                <Typography className="thread-title" variant="display1">{this.state.title}</Typography>
+                {this.state.Posts.map(post => Post(post))}
+                <ExpansionPanel>
                     <ExpansionPanelSummary 
                     expandIcon={<ExpandMoreIcon />}> 
                     <Typography>Reply</Typography>                       
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails>
-                        <Reply threadId={1} />
+                        <Reply threadId={this.props.threadId} userId={this.props.userId}/>
                     </ExpansionPanelDetails>
                 </ExpansionPanel>
             </Paper>
