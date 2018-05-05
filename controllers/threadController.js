@@ -15,13 +15,13 @@ module.exports = {
   },
 
   // Allows user to create new threads
-  newThread: (content, subforumId, userId, res) => {
-        db.Thread.create({ title: content.title })
+  newThread: (req , res) => {
+        db.Thread.create({ title: req.body.title })
         .then(thread => {
           console.log(thread.get({ plain: true }));
-          db.User.findById(userId)
+          db.User.findById(req.body.userId)
             .then(user => user.addThread(thread)
-                .then(data => db.Subforum.findById(subforumId)
+                .then(data => db.Subforum.findById(req.body.subforumId)
                     .then(subforum => {
                       subforum.addThread(thread)
                       res.json(thread.get({ plain: true }))
@@ -35,9 +35,10 @@ module.exports = {
         .catch(err => console.log(err));
     },
   // Finds all posts for the associated thread
-  findAllThreadPosts: (threadId, res) => {
+  findAllThreadPosts: (req, res) => {
+    console.log(req.params.id);
     db.Thread.findOne({
-      where: { id: threadId },
+      where: { id: req.params.id },
       include: [
         {
           model: db.Post,
@@ -46,7 +47,7 @@ module.exports = {
       ]
     })
       .then(threads => {
-        console.log(threads.get({ plain: true }));
+        //console.log(threads.get({ plain: true }));
         res.json(threads.get({ plain: true }));
       })
       .catch(err => console.log(err));
@@ -64,7 +65,7 @@ module.exports = {
         console.log("thread has been updated");
         res.json(thread.get({ plain: true }))
       })
-      .catch(err => console.log(err));
+      .catch(err => console.log(err,"ERROR"));
   },
 
   // Allows users to decrease rep of threads that don't contribute or break the forum rules

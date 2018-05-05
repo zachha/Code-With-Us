@@ -2,6 +2,9 @@ body {
   font-family: Roboto, sans-serif;
 }
 
+a {
+  text-decoration: none;
+}
 .menu-bar .menu-icon {
   position: absolute;
   left: 38px;

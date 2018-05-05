@@ -11,7 +11,7 @@ import { createPost} from "../../utils/API/dbAPI";
 class Reply extends React.Component {
     state = {
         userId:this.props.userId,
-        threadId:this.props.ThreadId,
+        threadId:this.props.threadId,
         text : ""
     } 
     
@@ -22,6 +22,7 @@ class Reply extends React.Component {
 
     formSubmit = event => {
         createPost(this.state);
+        console.log(this.state,"Post")
     }
     
     render () {return(

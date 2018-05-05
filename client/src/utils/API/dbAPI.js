@@ -25,12 +25,12 @@ export function getAllUserPosts (userId) {
 
 // updates specified user's password
 export function updatePassword (userId, newPassword) {
-    return axios.put('/api/user/' + userId);
+    return axios.put('/api/user/' + userId , newPassword);
 } 
 
 // updates specified user's email
 export function updateEmail  (userId, newEmail) {
-    return axios.put('/api/user/' +userId);
+    return axios.put('/api/user/' +userId,newEmail);
 }
 
 // increases specified user's reputation
@@ -50,8 +50,8 @@ export function deleteUser (userId) {
 // THREAD //
 
 // Creates a new thread to be associated with a user and subforum
-export function createThread  (content, subforumId, userId) {
-    return axios.post('/api/thread')
+export function createThread  (thread) {
+    return axios.post('/api/thread',thread)
 }
 
 // finds all threads
@@ -65,20 +65,17 @@ export function getAllThreadPosts (threadId) {
 }
 
 // updates the thread's reputation by +1
-export function increaseThreadRep (threadId) {
-    return axios.post('/api/thread/' + threadId);
+export function updateThreadRep (threadId) {
+    return axios.post('/api/thread/rep/' + threadId);
 }
 
-// updates the thread's reputation by -1
-export function decreaseThreadRep (threadId) {
-    return axios.post('api/thread' +threadId);
-}
+
 
 // POST //
 
 // allows user to create new post that will be associated with the thread it is in
-export function createPost(content, threadId, userId) {
-    return axios.post('/api/post');
+export function createPost(post) {
+    return axios.post('/api/post', post);
 }
 
 // gets the specified post
@@ -87,8 +84,8 @@ export function getPost (postId) {
 }
 
 // allows user or moderator to edit specified post
-export function editPost (postId) {
-    return axios.put('/api/post');
+export function editPost (postId,newText) {
+    return axios.put('/api/post',newText);
 }
 
 // allows user or moderator to delete specified post
@@ -104,11 +101,11 @@ export function createSubforum (category) {
 }
 
 // returns all the subforums in the specified category
-export function getSubforumByCategory (subforumId) {
-    return axios.get('/api/subforum');
+export function getSubforumByCategory (category) {
+    return axios.get('/api/subforum/'+category);
 }
 
 // returns all threads associated with the specified subforum
 export function getAllSubforumThreads (subforumId) {
-    return axios.get('/api/subforum');
+    return axios.get('/api/subforum/'+subforumId);
 }

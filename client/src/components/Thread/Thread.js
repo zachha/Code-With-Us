@@ -13,6 +13,7 @@ import { getAllThreadPosts} from "../../utils/API/dbAPI";
 class Thread extends React.Component {
   
     state={
+        userId:this.props.threadId,
         threadId:this.props.threadId,
         Posts:[]
     }
@@ -21,7 +22,7 @@ class Thread extends React.Component {
     
     
     loadPosts = () => 
-      getAllThreadPosts(this.state.threadId)
+      getAllThreadPosts(this.props.threadId)
       .then(res=>{         
           this.setState(res.data);
           console.log(this.state,"STATE");
