@@ -4,9 +4,9 @@
   "description": "code wih us is a Forum/Chat service for new coders and experienced programmers alike",
   "main": "server.js",
   "scripts": {
-    "server": "node server.js",
-    "client": "node scripts/start-client.js",
-    "start": "concurrently \"nodemon server.js\"  \"npm run client\"",
+    "server": "node server",
+    "client": "node scripts/start-client",
+    "start": "concurrently \"node server\"  \"yarn client\"",
     "build": "node scripts/build.js",
     "test": "echo\"Error: no test specified\" && exit 1"
   },
@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@material-ui/icons": "^1.0.0-beta.43",
+    "axios": "^0.18.0",
     "body-parser": "^1.18.2",
     "dotenv": "^5.0.1",
     "express": "^4.16.3",

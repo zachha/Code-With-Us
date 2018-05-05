@@ -5,7 +5,7 @@ module.exports = {
   // function for user to create username and password for user authentication
   newUser: (email, userName, password, res) => {
     db.User.create({
-      email: email,
+      email: req.body.email,
       username: userName,
       password: password
     })

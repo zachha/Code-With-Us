@@ -1,115 +1,111 @@
 import axios from 'axios';
 
-export default {
-    // USERS //
 
-    // gets all user data
-    getAllUsers: (res) => {
-        return axios.get('/api/user');
-    },
+// USERS //
 
-    // creates a new user
-    createUser: (email, userName, password, res) => {
-        return axios.post('/api/user');
-    },
+// gets all user data
+export function getAllUsers () {
+    return axios.get('/api/user');
+}
 
-    //get specific user
-    getUser: (userId, res) => {
-        return axios.get('/api/user/' + id);
-    },
+// creates a new user
+export function createUser (email, userName, password) {
+    return axios.post('/api/user');
+}
 
-    // returns all of a specified user's posts
-    getAllUserPosts: (userId, res) => {
-        return axios.get('/api/user/' + id);
-    },
+//get specific user
+export function getUser (userId) {
+    return axios.get('/api/user/' + userId);
+}
 
-    // updates specified user's password
-    updatePassword: (userId, newPassword) => {
-        return axios.put('/api/user/' + id);
-    },
+// returns all of a specified user's posts
+export function getAllUserPosts (userId) {
+    return axios.get('/api/user/' + userId);
+}
 
-    // updates specified user's email
-    updateEmail: (userId, newEmail) => {
-        return axios.put('/api/user/' +id);
-    },
+// updates specified user's password
+export function updatePassword (userId, newPassword) {
+    return axios.put('/api/user/' + userId , newPassword);
+} 
 
-    // increases specified user's reputation
-    increaseUserRep: (userId, res) => {
-        return axios.put('/api/user/' +id);
-    },
+// updates specified user's email
+export function updateEmail  (userId, newEmail) {
+    return axios.put('/api/user/' +userId,newEmail);
+}
 
-    // decreases specified user's reputation
-    decreaseUserRep: (userId, res) => {
-        return axios.put('/api/user/' +id);
-    },
+// increases specified user's reputation
+export function increaseUserRep (userId) {
+    return axios.put('/api/user/' +userId);
+}
 
-    deleteUser: userId => {
-        return axios.delete('/api/user/' +id);
-    },
+// decreases specified user's reputation
+export function decreaseUserRep (userId) {
+    return axios.put('/api/user/' +userId);
+}
 
-    // THREAD //
+export function deleteUser (userId) {
+    return axios.delete('/api/user/' +userId);
+}
 
-    // Creates a new thread to be associated with a user and subforum
-    createThread: (content, subforumId, userId, res) => {
-        return axios.post('/api/thread')
-    },
+// THREAD //
 
-    // finds all threads
-    getAllThreads: (res) => {
-        return axios.get('/api/thread');
-    },
+// Creates a new thread to be associated with a user and subforum
+export function createThread  (thread) {
+    return axios.post('/api/thread',thread)
+}
 
-    // finds all posts for the specified thread
-    getAllThreadPosts: (threadId, res) => {
-        return axios.get('/api/thread/' + id);
-    },
+// finds all threads
+export function getAllThreads () {
+    return axios.get('/api/thread');
+}
 
-    // updates the thread's reputation by +1
-    increaseThreadRep: (threadId, res) => {
-        return axios.post('/api/thread/' + id);
-    },
+// finds all posts for the specified thread
+export function getAllThreadPosts (threadId) {
+    return axios.get('/api/thread/' + threadId);
+}
 
-    // updates the thread's reputation by -1
-    decreaseThreadRep: (threadId, res) => {
-        return axios.post('api/thread' +id);
-    },
+// updates the thread's reputation by +1
+export function updateThreadRep (threadId) {
+    return axios.post('/api/thread/rep/' + threadId);
+}
 
-    // POST //
 
-    // allows user to create new post that will be associated with the thread it is in
-    createPost: (content, threadId, userId, res) => {
-        return axios.post('/api/post');
-    },
 
-    // gets the specified post
-    getPost: (postId, res) => {
-        return axios.get('/api/post');
-    },
+// POST //
 
-    // allows user or moderator to edit specified post
-    editPost: (postId, res) => {
-        return axios.put('/api/post');
-    },
+// allows user to create new post that will be associated with the thread it is in
+export function createPost(post) {
+    return axios.post('/api/post', post);
+}
 
-    // allows user or moderator to delete specified post
-    deletePost: postId => {
-        return axios.delete('/api/post');
-    },
+// gets the specified post
+export function getPost (postId) {
+    return axios.get('/api/post');
+}
 
-    // SUBFORUM //
+// allows user or moderator to edit specified post
+export function editPost (postId,newText) {
+    return axios.put('/api/post',newText);
+}
 
-    // Allows Moderator to create new Subforum
-    createSubforum: (category, res) => {
-        return axios.get('/api/subforum');
-    },
+// allows user or moderator to delete specified post
+export function deletePost (postId) {
+    return axios.delete('/api/post');
+}
 
-    // returns all the subforums in the specified category
-    getSubforumByCategory: (subforumId, res) => {
-        return axios.get('/api/subforum');
-    },
+// SUBFORUM //
 
-    // returns all threads associated with the specified subforum
-    getAllSubforumThreads: (subforumId, res) => {
-        return axios.get('/api/subforum');
-    }
+// Allows Moderator to create new Subforum
+export function createSubforum (category) {
+    return axios.get('/api/subforum');
+}
+
+// returns all the subforums in the specified category
+export function getSubforumByCategory (category) {
+    return axios.get('/api/subforum/'+category);
+}
+
+// returns all threads associated with the specified subforum
+export function getAllSubforumThreads (subforumId) {
+    return axios.get('/api/subforum/'+subforumId);
 }

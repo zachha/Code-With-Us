@@ -2,6 +2,9 @@ body {
   font-family: Roboto, sans-serif;
 }
 
+a {
+  text-decoration: none;
+}
 .menu-bar .menu-icon {
   position: absolute;
   left: 38px;
@@ -34,6 +37,10 @@ body {
   margin: 0 25px;
   display: flex;
   justify-content: space-between;
+}
+
+.post-submit{
+  text-align:right;
 }
 
 .thread-main{

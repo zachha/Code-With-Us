@@ -6,57 +6,41 @@ import ExpansionPanel, {
 } from 'material-ui/ExpansionPanel'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Typography from 'material-ui/Typography';
-import Post from "../Post/post";
-import Reply from "../Reply/reply";
+import Post from "../Cards/post";
+import Reply from "./reply";
+import { getAllThreadPosts} from "../../utils/API/dbAPI";
 
 class Thread extends React.Component {
-    state = {
-        totalPosts:1,
-        posts: [
-            {
-                id:1,
-                user: "Harris",
-                title: "A Post",
-                markdown: `
-             ## How about some code? 
-             \`\`\` 
-             var React = require('react'); 
-             var Markdown = require('react-markdown'); 
-             React.render( \
-               <Markdown source="# Your markdown here" />, 
-               document.getElementById('content') 
-             ); 
-             \`\`\` 
-             `
-            }
-
-        ]
+  
+    state={
+        userId:this.props.threadId,
+        threadId:this.props.threadId,
+        Posts:[]
     }
-    newPost = input => {     
-        console.log(this.state.posts);
-        this.setState({totalPosts:this.totalPosts+=1});
-        this.setState(old => ({
-            posts:[...old.posts,{
-            id:this.state.totalPosts,
-            user:"Harris",
-            title:"Another Post",
-            markdown:input
-            }]
-        }));
-      }
+
+    componentDidMount = () => this.loadPosts();
+    
+    
+    loadPosts = () => 
+      getAllThreadPosts(this.props.threadId)
+      .then(res=>{         
+          this.setState(res.data);
+          console.log(this.state,"STATE");
+      });
+
     render() {
         return (
             <Paper elevation={3} className="thread-main">
                
-                        <Typography variant="title">A Thread</Typography>
-                        {this.state.posts.map(post => Post(post))}
-                        <ExpansionPanel>
+                <Typography className="thread-title" variant="display1">{this.state.title}</Typography>
+                {this.state.Posts.map(post => Post(post))}
+                <ExpansionPanel>
                     <ExpansionPanelSummary 
                     expandIcon={<ExpandMoreIcon />}> 
                     <Typography>Reply</Typography>                       
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails>
-                        <Reply action={this.newPost} />
+                        <Reply threadId={this.props.threadId} userId={this.props.userId}/>
                     </ExpansionPanelDetails>
                 </ExpansionPanel>
             </Paper>
