@@ -10,7 +10,7 @@ import { createPost} from "../../utils/API/dbAPI";
 
 class Reply extends React.Component {
     state = {
-        userId:this.props.userId,
+        UserId:this.props.userId,
         threadId:this.props.threadId,
         text : ""
     } 
