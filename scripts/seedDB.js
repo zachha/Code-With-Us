@@ -1,11 +1,13 @@
 const sequelize = require('sequelize');
 const db = require('../models');
 
+//array  of data objects to create subforums
 const subforums = [
     {category:"Markdown"},
     {category:"Miscellaneous"}
 ];
 
+//array of data objects to create users
 const users = [
     {
         email:"harris@harris.com",
@@ -30,6 +32,7 @@ const users = [
     }
 ]
 
+//array of data objects to create threads
 const threads = [
     {
         title:"Introduction",
@@ -53,18 +56,28 @@ const threads = [
     }
 ];
 
+/*
+* To avoid key constraints on the thread insertions, 
+* we add users and subforums using special async functions
+* that await all the promises to return completed
+*/
+
+//await all user inserts
 const addusers = async () =>
     await Promise.all(users.map(async user =>
       await db.User.create(user)
       .then(user => console.log("---CREATED USER:---",user.get({plain:true})))
     ));
 
+//await all subforum inserts
 const addsubs = async () =>
     await Promise.all(subforums.map(async subforum => 
       await db.Subforum.create(subforum)
       .then(subforum => console.log("---CREATED SUBFORUM:---",subforum.get({plain:true})))
     ));
 
+//insert all users, then insert all subforums,
+//finally, insert threads and add them to association tables
 const Seed =  () =>     
     addusers().then(() => addsubs().then(() =>     
     threads.forEach(thread =>
@@ -77,5 +90,5 @@ const Seed =  () =>
         })
     )));
 
-
+//executes on export
 module.exports = Seed();
