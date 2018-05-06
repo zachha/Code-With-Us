@@ -6,7 +6,7 @@ export default class Home extends Component {
     state={
         user:{
             username:"Harris",
-            id:1
+            id:"1"
         }
     }
     render(){

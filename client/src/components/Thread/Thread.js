@@ -13,7 +13,7 @@ import { getAllThreadPosts} from "../../utils/API/dbAPI";
 class Thread extends React.Component {
   
     state={
-        userId:this.props.threadId,
+        UserId:this.props.userId,
         threadId:this.props.threadId,
         Posts:[]
     }

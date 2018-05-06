@@ -32,7 +32,8 @@ app.get("*", function(req, res) {
 
 // syncs the database and starts the server
 // FORCE TRUE IS ON DON'T FORGET TO TURN OFF 
-db.sequelize.sync({ force: false }).then(() => {
+db.sequelize.sync({ force: true }).then(() => {
+  require('./scripts/seedDB');
   app.listen(PORT, function() {
     console.log(`🌎 ==> Server now on port ${PORT}!`);
   });
