@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import Drawer from 'material-ui/Drawer';
 import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
@@ -13,18 +14,22 @@ const MenuDrawer = props => (
             <h3 className="drawer-header">Code With Us</h3>
         </div>
         <List className="menu-items" component="nav">
-            <ListItem button>
-                <ListItemIcon>
-                    <HomeIcon />
-                </ListItemIcon>
-                <ListItemText primary="Home" />
-            </ListItem>
-            <ListItem button>
-                <ListItemIcon>
-                    <CodeIcon />
-                </ListItemIcon>
-                <ListItemText primary="About" />
-            </ListItem>
+            <Link to='/'>
+                <ListItem button>
+                    <ListItemIcon>
+                        <HomeIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Home" />
+                </ListItem>
+            </Link>
+            <Link to='/about'>
+                <ListItem button>
+                    <ListItemIcon>
+                        <CodeIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="About" />
+                </ListItem>
+            </Link>
         </List>
     </Drawer>
 );
