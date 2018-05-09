@@ -1,5 +1,10 @@
 import React from "react";
-import Prism from "prismjs";
+import Prism from "prismjs/components/prism-core";
+//other languages depend on these
+import "prismjs/components/prism-clike";
+import "prismjs/components/prism-java";
+//include javascript as fallback
+import "prismjs/components/prism-javascript";
 
 let CodeBlock = {
   Block (props){
@@ -7,7 +12,8 @@ let CodeBlock = {
     let cls;
     //console.log(props.value)
     try{
-      html = Prism.highlight(props.value||"...", Prism.languages[props.language]);
+      import("prismjs/components/prism-"+props.language);
+      html = Prism.highlight(props.value ||"...", Prism.languages[props.language]);
       cls = `language-${props.language}`;
     }
     catch(er){
