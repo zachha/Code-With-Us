@@ -4,6 +4,8 @@ import Drawer from 'material-ui/Drawer';
 import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
 import HomeIcon from '@material-ui/icons/Home';
 import CodeIcon from '@material-ui/icons/Code';
+import FontAwesomeIcon from "@fortawesome/react-fontawesome";
+import './menuDrawer.css';
 
 const MenuDrawer = props => (
     <Drawer
@@ -24,6 +26,12 @@ const MenuDrawer = props => (
                     <CodeIcon />
                 </ListItemIcon>
                 <ListItemText primary="About" />
+            </ListItem>
+            <ListItem button>
+                <ListItemIcon>
+                    <FontAwesomeIcon icon="id-card" className="idCard" />
+                </ListItemIcon>
+                <ListItemText primary="User Info" />
             </ListItem>
         </List>
     </Drawer>
