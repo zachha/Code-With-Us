@@ -2,6 +2,7 @@ import React from "react";
 import Prism from "prismjs/components/prism-core";
 //other languages depend on these
 import "prismjs/components/prism-clike";
+import "prismjs/components/prism-c";
 import "prismjs/components/prism-java";
 //include javascript as default fallback
 import "prismjs/components/prism-javascript";
