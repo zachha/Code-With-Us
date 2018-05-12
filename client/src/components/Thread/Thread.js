@@ -33,7 +33,7 @@ class Thread extends React.Component {
             <Paper elevation={3} className="left-feed">
                
                 <Typography className="thread-title" variant="display1">{this.state.title}</Typography>
-                {this.state.Posts.map(post => Post(post))}
+                {this.state.Posts.map(post => Post({post:post,userId:this.state.UserId}))}
                 <ExpansionPanel>
                     <ExpansionPanelSummary 
                     expandIcon={<ExpandMoreIcon />}> 

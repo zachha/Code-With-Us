@@ -1,5 +1,4 @@
 import React from 'react';
-
 import Drawer from 'material-ui/Drawer';
 import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
 import HomeIcon from '@material-ui/icons/Home';

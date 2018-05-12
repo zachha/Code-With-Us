@@ -45,12 +45,18 @@ module.exports = {
     },
 
     // Allows user or mod to update/edit a post
-    editPost: (content, postId, res) => {
-        db.Post.update({ text: content.text }, { where: { id: postId } })
-          .then(post => {
+    editPost: (req , res) => {
+        db.Post.update({ text: content.text }, {
+             where: { 
+                 id: req.body.postId,
+                 userId: req.body.userId            
+                } 
+        })
+        .then(post => {
+              res.end(res.writeHead(200,"Post updated!"))
               console.log("Post updated!");
-          })
-          .catch(err => console.log(err));
+        })
+        .catch(err => res.end(res.writeHead(400, "Credentials Mismatch")));
     },
 
     // Allows user or mod to delete a post
