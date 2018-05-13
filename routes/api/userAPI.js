@@ -5,7 +5,8 @@ const userController = require('../../controllers/userController');
 router.route('/')
     .get(userController.findAll) // finds all users
     .post(userController.newUser) // creates new User
-   
+
+router.get("/fromtoken",userController.findFromToken);//finds a user from a saved token   
 
 router.route("/:id")
     .get(userController.findUser) // finds specific user

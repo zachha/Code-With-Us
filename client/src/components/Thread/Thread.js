@@ -13,13 +13,22 @@ import { getAllThreadPosts} from "../../utils/API/dbAPI";
 class Thread extends React.Component {
   
     state={
-        UserId:this.props.userId,
+        userId:this.props.user ? this.props.user.id:null,
         threadId:this.props.threadId,
         Posts:[]
     }
 
-    componentDidMount = () => this.loadPosts();
-    
+    componentDidMount = () => {
+        console.log(this.props.user);
+        this.loadPosts();
+    }
+
+    componentWillReceiveProps (newProps){
+        console.log(newProps);
+        this.setState({
+            userId: newProps.user ? newProps.user.id:null
+        });
+    }
     
     loadPosts = () => 
       getAllThreadPosts(this.props.threadId)
@@ -33,16 +42,16 @@ class Thread extends React.Component {
             <Paper elevation={3} className="left-feed">
                
                 <Typography className="thread-title" variant="display1">{this.state.title}</Typography>
-                {this.state.Posts.map(post => Post(post))}
-                <ExpansionPanel>
+                {this.state.Posts.map(post => Post({post:post,userId:this.state.userId}))}
+                {this.state.userId && <ExpansionPanel>
                     <ExpansionPanelSummary 
                     expandIcon={<ExpandMoreIcon />}> 
                     <Typography>Reply</Typography>                       
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails>
-                        <Reply threadId={this.props.threadId} userId={this.props.userId}/>
+                        <Reply threadId={this.state.threadId} userId={this.state.userId}/>
                     </ExpansionPanelDetails>
-                </ExpansionPanel>
+                </ExpansionPanel>}
             </Paper>
         );
 
