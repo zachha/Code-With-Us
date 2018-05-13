@@ -1,7 +1,31 @@
 import axios from 'axios';
 
-
+// sets saved login info
+export function setAuth () {
+    console.log("auth set");
+    axios.defaults.headers.common['Authorization'] = localStorage.getItem("CWUTOKEN");
+};
 // USERS //
+ 
+//log in
+export async function login (credentials) {
+    return await axios.post('/api/auth',credentials)
+    .then(res =>{
+        localStorage.setItem("CWUTOKEN","Bearer "+res.data.token);
+        return res.data;
+    });
+}
+
+export async function defaultLogin () {
+    return await axios.get('api/user/fromtoken')
+    .then(res => {return res.data});
+}
+
+//log out
+export function logout () {
+    localStorage.setItem("CWUTOKEN",null);
+    axios.defaults.headers.common['Authorization'] = null;
+}
 
 // gets all user data
 export function getAllUsers () {
@@ -9,8 +33,8 @@ export function getAllUsers () {
 }
 
 // creates a new user
-export function createUser (email, userName, password) {
-    return axios.post('/api/user');
+export function createUser (user) {
+    return axios.post('/api/user',user);
 }
 
 //get specific user

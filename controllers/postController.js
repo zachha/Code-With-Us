@@ -13,7 +13,7 @@ module.exports = {
                     console.log(post.get({ plain: true }))
                     thread.increment({ postCount: 1})
                 })
-                .then(data => db.User.findById(req.body.UserId)
+                .then(data => db.User.findById(req.user.id)
                     .then(user => user.addPosts(post)
                         .then(user => {
                             user.increment({ postCount: 1})
@@ -31,10 +31,10 @@ module.exports = {
     },
 
     // Finds a specific post by id (can be used to quote specific posts)
-    findOnePost: (postId, res) => {
+    findOnePost: (req, res) => {
         db.Post.findOne({
             where: {
-                id: postId
+                id: req.params.postId
             }
         })
         .then(user => {
@@ -45,12 +45,18 @@ module.exports = {
     },
 
     // Allows user or mod to update/edit a post
-    editPost: (content, postId, res) => {
-        db.Post.update({ text: content.text }, { where: { id: postId } })
-          .then(post => {
+    editPost: (req , res) => {
+        db.Post.update({ text: content.text }, {
+             where: { 
+                 id: req.body.postId,
+                 UserId: req.user.id           
+                } 
+        })
+        .then(post => {
+              res.end(res.writeHead(200,"Post updated!"))
               console.log("Post updated!");
-          })
-          .catch(err => console.log(err));
+        })
+        .catch(err => res.end(res.writeHead(400, "Credentials Mismatch")));
     },
 
     // Allows user or mod to delete a post

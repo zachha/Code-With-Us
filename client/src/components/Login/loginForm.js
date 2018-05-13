@@ -42,7 +42,7 @@ const LoginForm = props => (
             <Link to="/signup">
                 <Button
                     className="form-button"
-                    variant="raised">Sign Up</Button>
+                    variant="raised" type="submit">Sign Up</Button>
             </Link>
         </div>
     </form>

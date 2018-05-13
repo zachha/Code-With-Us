@@ -6,7 +6,7 @@ import Typography from 'material-ui/Typography';
 const UserBox = props => {
     return (
         <Paper elevation={3} className="user-box">
-            <Typography variant="title">Hello! {props.username}</Typography>
+            <Typography variant="title">Hello, {(props.user && props.user.username) || "Guest User"}</Typography>
         </Paper>
     )
 };
