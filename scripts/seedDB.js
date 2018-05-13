@@ -12,23 +12,27 @@ const users = [
     {
         email:"harris@harris.com",
         username:"Harris",
-        password:"12345"
+        password:"12345",
+        isModerator:true
 
     },
     {
         email:"zach@zach.com",
         username:"Zach",
-        password:"12345"
+        password:"12345",
+        isModerator:true
     },
     {
         email:"erick@erick.com",
         username:"Erick",
-        password:"12345"
+        password:"12345",
+        isModerator:true
     },
     {
         email:"rich@rich.com",
         username:"Rich",
-        password:"12345"
+        password:"12345",
+        isModerator:true
     }
 ]
 

@@ -13,7 +13,7 @@ module.exports = {
                     console.log(post.get({ plain: true }))
                     thread.increment({ postCount: 1})
                 })
-                .then(data => db.User.findById(req.body.UserId)
+                .then(data => db.User.findById(req.user.id)
                     .then(user => user.addPosts(post)
                         .then(user => {
                             user.increment({ postCount: 1})
@@ -31,10 +31,10 @@ module.exports = {
     },
 
     // Finds a specific post by id (can be used to quote specific posts)
-    findOnePost: (postId, res) => {
+    findOnePost: (req, res) => {
         db.Post.findOne({
             where: {
-                id: postId
+                id: req.params.postId
             }
         })
         .then(user => {
@@ -49,7 +49,7 @@ module.exports = {
         db.Post.update({ text: content.text }, {
              where: { 
                  id: req.body.postId,
-                 userId: req.body.userId            
+                 UserId: req.user.id           
                 } 
         })
         .then(post => {
