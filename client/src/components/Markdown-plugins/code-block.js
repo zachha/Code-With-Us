@@ -1,6 +1,7 @@
 import React from "react";
 import Prism from "prismjs/components/prism-core";
 //other languages depend on these
+//import {loadLanguages} from "prismjs/components";
 import "prismjs/components/prism-clike";
 import "prismjs/components/prism-c";
 import "prismjs/components/prism-java";
@@ -14,7 +15,7 @@ let CodeBlock = {
     //console.log(props.value)
     try{
       //try to load prism component for language
-      import("prismjs/components/prism-"+props.language);
+      //import("prismjs/components/prism-"+props.language);
       html = Prism.highlight(props.value ||"...", Prism.languages[props.language]);
       cls = `language-${props.language}`;
     }

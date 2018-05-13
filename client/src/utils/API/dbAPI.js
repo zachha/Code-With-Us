@@ -1,8 +1,10 @@
 import axios from 'axios';
-
+let base = process.env.NODE_ENV==="production"?
+    "http://code-withus.herokuapp.com":"http://localhost:3000";
+axios.defaults.baseURL = base;
 // sets saved login info
 export function setAuth () {
-    console.log("auth set");
+    
     axios.defaults.headers.common['Authorization'] = localStorage.getItem("CWUTOKEN");
 };
 // USERS //

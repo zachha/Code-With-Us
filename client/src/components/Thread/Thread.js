@@ -22,6 +22,13 @@ class Thread extends React.Component {
         console.log(this.props.user);
         this.loadPosts();
     }
+
+    componentWillReceiveProps (newProps){
+        console.log(newProps);
+        this.setState({
+            userId: newProps.user ? newProps.user.id:null
+        });
+    }
     
     loadPosts = () => 
       getAllThreadPosts(this.props.threadId)
@@ -42,7 +49,7 @@ class Thread extends React.Component {
                     <Typography>Reply</Typography>                       
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails>
-                        <Reply threadId={this.props.threadId} userId={this.props.user.id}/>
+                        <Reply threadId={this.state.threadId} userId={this.state.userId}/>
                     </ExpansionPanelDetails>
                 </ExpansionPanel>}
             </Paper>

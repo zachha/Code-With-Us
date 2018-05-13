@@ -13,6 +13,7 @@ export default class Main extends Component {
     }
 
     componentDidMount () {
+        console.log("mounted");
         setAuth();
         defaultLogin()
         .then(res => this.setState({user:res}));
