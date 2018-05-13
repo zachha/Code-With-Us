@@ -11,7 +11,13 @@ passport.use(new LocalStrategy({
     },
     function(username, password, cb) {
         //Assume there is a DB module pproviding a global UserModel
-        return db.User.findOne({where:{username:{$ilike:`%${username}%`}, password:password}})
+        return db.User.findOne({where:{
+            $and:[{password:password},db.Sequelize.where(
+                db.Sequelize.fn('lower',db.Sequelize.col('username')),{$like:`%${username}%`})
+            ]
+        }})
+       
+    
             .then(user => {
                 if (!user) {
                     return cb(null, false, {message: 'Incorrect username or password.'});
