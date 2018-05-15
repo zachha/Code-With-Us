@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
+import UserBox from './user-box.js';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -46,13 +47,28 @@ class User extends Component {
                                 centered
                                 >
                                 <Tab label="User Overview"/>
-                                <Tab label="Threads Started"/>
+                                <Tab label="Threads Created"/>
                                 <Tab label="All Posts" href="#basic-tabs"/>
                             </Tabs>
                         </AppBar>
-                        {value === 0 && <TabContainer>Item One</TabContainer>}
-                        {value === 1 && <TabContainer>Item Two</TabContainer>}
-                        {value === 2 && <TabContainer>Item Three</TabContainer>}
+                        {value === 0 && 
+
+                            <TabContainer>
+                                <UserBox user={this.state.user}/>
+                            </TabContainer>
+                        }
+                        {value === 1 && 
+
+                            <TabContainer>
+                                Item Two
+                            </TabContainer>
+                        }
+                        {value === 2 && 
+
+                            <TabContainer>
+                                Item Three
+                            </TabContainer>
+                        }
                     </Paper>
                 </Grid>
             </Grid>
