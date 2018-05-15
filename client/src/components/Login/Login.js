@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-
-import Paper from 'material-ui/Paper';
-
+import Paper from "@material-ui/core/Paper";
+import {login} from '../../utils/API/dbAPI';
 import LoginForm from './loginForm';
 
 export default class Login extends Component {
@@ -90,7 +89,11 @@ export default class Login extends Component {
                 submitEnabled: false
             });
 
-            //axios request here with the credentials
+            login(credentials)
+            .then(res => {
+                console.log(localStorage.getItem("CWUTOKEN"));
+                this.props.loginCallback(res.user)});
+            
         }
     }
 

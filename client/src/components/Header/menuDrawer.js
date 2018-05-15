@@ -1,10 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-
-import Drawer from 'material-ui/Drawer';
-import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
+import {Link} from 'react-router-dom';
+import Drawer from "@material-ui/core/Drawer";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
 import HomeIcon from '@material-ui/icons/Home';
 import CodeIcon from '@material-ui/icons/Code';
+import FontAwesomeIcon from "@fortawesome/react-fontawesome";
+import './menuDrawer.css';
 import PersonIcon from '@material-ui/icons/Person';
 
 const MenuDrawer = props => (
@@ -37,6 +41,14 @@ const MenuDrawer = props => (
                         <CodeIcon />
                     </ListItemIcon>
                     <ListItemText primary="About" />
+                </ListItem>
+            </Link>
+            <Link to='/user' onClick={props.onCloseDrawer}>
+                <ListItem button>
+                    <ListItemIcon>
+                        <FontAwesomeIcon icon="id-card" className="idCard" />
+                </ListItemIcon>
+                <ListItemText primary="User Info" />
                 </ListItem>
             </Link>
         </List>

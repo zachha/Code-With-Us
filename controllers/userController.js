@@ -3,11 +3,11 @@ const db = require('../models');
 module.exports = {
 
   // function for user to create username and password for user authentication
-  newUser: (email, userName, password, res) => {
+  newUser: (req, res) => {
     db.User.create({
       email: req.body.email,
-      username: userName,
-      password: password
+      username: req.body.userName,
+      password: req.body.password
     })
       .then(user => {
         console.log(user.get({ plain: true }));
@@ -17,61 +17,68 @@ module.exports = {
   },
 
   // allows user to update their password
-  updatePassword: (userId, password) => {
+  updatePassword: (req,res) => {
     db.User.update(
       {
-        password: password
+        password: req.body.password
       },
       {
         where: {
-          id: userId
+          id: req.user.id,
+          email:req.user.email
         }
       }
     )
       .then(result =>
-        console.log("User: " + userId + "'s password was successfully changed!")
+        console.log("User: " + req.user.username + "'s password was successfully changed!")
       )
       .catch(err => console.log(err));
   },
 
   // allows user to update their stored email address
-  updateEmail: (userId, email) => {
+  updateEmail: (req,res) => {
     db.User.update(
       {
-        email: email
+        email: req.body.email
       },
       {
         where: {
-          id: userId
+          id: req.user.id
         }
       }
     )
       .then(result =>
-        console.log("User: " + userId + "'s email was successfully changed!")
+        console.log("User: " + req.user.username + "'s email was successfully changed!")
       )
       .catch(err => console.log(err));
   },
 
   // finds all users and sorts them by most reputaiton to least
-  findAll: (res) => {
+  findAll: (req,res) => {
     db.User.findAll({
-      order: [["reputation", "DESC"]]
+      order: [["reputation", "DESC"]],
+      raw:true
     })
-      .then(users => {
-        users.forEach((user) => {
-          console.log(user.get({ plain: true }));
-          res.json(user.get({ plain: true }));
-        })
-      })
-      .catch(err => console.log(err));
+    .then(users => res.json(users))
+    .catch(err => console.log(err));
+  },
+
+  //finda a user from a saved token if they previously logged in
+  findFromToken: (req,res) => {
+     db.User.findOne({
+       where:{
+         id:req.user.id,
+         username:req.user.username
+       }
+     }).then(user => res.json(user));
   },
 
   // Allows user to find another user by their user name
-  findUser: (userId, res) => {
+  findUser: (req, res) => {
     db.User.findOne({
       where: {
-        id: userId
-      },
+        id:req.params.id
+            },
       include: [
         { model: db.Post },
         { model: db.Thread }
@@ -85,10 +92,10 @@ module.exports = {
   },
 
   // Finds all of a user's posts
-  findAllPosts: (userId, res) => {
+  findAllPosts: (req, res) => {
       db.User.findAll({
         where: {
-          id: userId
+          id: req.params.userId || req.user.id
         },
         include: [
           {
@@ -104,8 +111,8 @@ module.exports = {
   },
 
     // Allows users to increase rep of specified user for helpful answers
-  increaseReputation: (userId, res) => {
-      db.User.findById(userId)
+  increaseReputation: (req, res) => {
+      db.User.findById(req.body.userId)
       .then(user => 
          user.increment({
             reputation: 1
@@ -119,8 +126,8 @@ module.exports = {
   },
 
   // Allows users to decrease rep of other users 
-  decreaseReputation: (userId, res) => {
-      db.User.findById(userId)
+  decreaseReputation: (req, res) => {
+      db.User.findById(req.body.userId)
       .then(user => 
          user.decrement({
             reputation: 1
@@ -134,19 +141,26 @@ module.exports = {
   },      
 
   // allows a mod or the specified user to delete their information
-  deleteUser: userId => {
-      db.User.destroy({
-          where: {
-              id: userId
-          }
-      })
-      .then(user => console.log('User has been deleted'))
-      .catch(err => console.log(err));
+  deleteUser: (req,res) => {
+    db.user.findOne({
+      where:{id:req.user.id,email:req.user.email}
+    })
+    .then(user =>{
+      if(user.isModerator || user.id===req.params.id){
+        db.User.destroy({
+            where: {
+                id: req.params.id,
+            }
+        })      
+      .then(user => {console.log('User '+user.id+' has been deleted');res.send("success!");})
+      .catch(err => console.log(err))
+      }else{res.end(res.writeHead(401,{"error":"You don't have permission!"}))}
+    })
   }
 };
 
 
 //module.exports.newUser("zach@email.com", "zach", "password");
 //module.exports.newUser("andy@email.com", "andy", "password2");
-module.exports.findUser(1);
+//module.exports.findUser(1);
 
