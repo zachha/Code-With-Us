@@ -1,10 +1,10 @@
 import React from "react";
-import Avatar from "material-ui/Avatar";
-import Card, {CardHeader,CardContent} from "material-ui/Card";
-import TextField from 'material-ui/TextField';
+import Avatar from "@material-ui/core/Avatar";
+import Card, { CardHeader, CardContent } from "@material-ui/core/Card";
+import TextField from "@material-ui/core/TextField";
 import Markdown from "react-markdown";
 import CodeBlock from "../Markdown-plugins/code-block";
-import Button from "material-ui/Button";
+import Button from "@material-ui/core/Button";
 import { createPost} from "../../utils/API/dbAPI";
 
 

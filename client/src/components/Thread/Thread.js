@@ -1,11 +1,11 @@
 import React from "react";
-import Paper from "material-ui/Paper";
+import Paper from "@material-ui/core/Paper";
 import ExpansionPanel, {
   ExpansionPanelSummary,
-  ExpansionPanelDetails,
-} from 'material-ui/ExpansionPanel'
+  ExpansionPanelDetails
+} from "@material-ui/core/ExpansionPanel";
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import Typography from 'material-ui/Typography';
+import Typography from "@material-ui/core/Typography";
 import Post from "../Cards/post";
 import Reply from "./reply";
 import { getAllThreadPosts} from "../../utils/API/dbAPI";

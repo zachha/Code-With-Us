@@ -1,6 +1,6 @@
 import React from "react";
-import Avatar from "material-ui/Avatar";
-import Card, {CardHeader,CardContent} from "material-ui/Card";
+import Avatar from "@material-ui/core/Avatar";
+import Card, { CardHeader, CardContent } from "@material-ui/core/Card";
 import Markdown from "react-markdown";
 import CodeBlock from "../Code-Block/code-block";
 

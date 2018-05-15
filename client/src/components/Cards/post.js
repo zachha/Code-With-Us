@@ -1,9 +1,9 @@
 import React from "react";
-import Avatar from "material-ui/Avatar";
-import Card, {CardHeader,CardContent} from "material-ui/Card";
+import Avatar from "@material-ui/core/Avatar";
+import Card, { CardHeader, CardContent } from "@material-ui/core/Card";
 import Markdown from "react-markdown";
 import CodeBlock from "../Markdown-plugins/code-block";
-import IconButton from 'material-ui/IconButton';
+import IconButton from "@material-ui/core/IconButton";
 import EditIcon from '@material-ui/icons/Edit';
 const titleRight = {
     display:"flex"
