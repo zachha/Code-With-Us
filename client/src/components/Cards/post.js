@@ -21,7 +21,7 @@ const Post = props => (
             title={props.post.User.username}
             action={
                 props.post.UserId===props.userId &&
-                <IconButton type="submit" ><EditIcon /></IconButton> 
+                <IconButton id={props.post.id} onClick={props.editCallback}><EditIcon /></IconButton> 
             }
         />
         <CardContent>        

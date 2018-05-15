@@ -46,9 +46,9 @@ module.exports = {
 
     // Allows user or mod to update/edit a post
     editPost: (req , res) => {
-        db.Post.update({ text: content.text }, {
+        db.Post.update({ text: req.body.text }, {
              where: { 
-                 id: req.body.postId,
+                 id: req.body.id,
                  UserId: req.user.id           
                 } 
         })

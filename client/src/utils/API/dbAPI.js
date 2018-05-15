@@ -101,7 +101,9 @@ export function updateThreadRep (threadId) {
 
 // allows user to create new post that will be associated with the thread it is in
 export function createPost(post) {
-    return axios.post('/api/post', post);
+    console.log("in api: ",post)
+    return axios.post('/api/post', post)
+    .catch(err => console.log(err));
 }
 
 // gets the specified post
@@ -110,8 +112,8 @@ export function getPost (postId) {
 }
 
 // allows user or moderator to edit specified post
-export function editPost (postId,newText) {
-    return axios.put('/api/post',newText);
+export function editPost (newPost) {
+    return axios.put('/api/post',newPost);
 }
 
 // allows user or moderator to delete specified post
