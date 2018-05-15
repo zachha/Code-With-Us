@@ -1,6 +1,6 @@
 import React from "react";
-import Paper from "material-ui/Paper";
-import Typography from 'material-ui/Typography';
+import Paper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
 import { getAllSubForums} from "../../utils/API/dbAPI";
 import Subforum from "../Cards/subForum";
 
@@ -28,5 +28,5 @@ class SubForums extends React.Component {
         </Paper>
         );
     }
-}
+};
 export default SubForums;
