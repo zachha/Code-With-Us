@@ -93,45 +93,45 @@ module.exports = {
 
   // Finds all of a user's posts
   findAllPosts: (req, res) => {
-    db.User.findAll({
+    db.User.findOne({
       where: {
         id: req.params.userId || req.user.id
       },
       include: [
         {
           model: db.Post,
-          include: [ db.Thread ]
+          include: [{ model: db.Thread, attributes: ["title"] }]
         }
       ]
     })
       .then(userPosts => {
-        if (userPosts.postCount > 0) {
+        if (userPosts) {
           console.log(userPosts.get({ plain: true }).Posts);
           res.json(userPosts.get({ plain: true }).Posts);
         } else {
           console.log("User has not made any posts");
           res.json("User has not made any posts");
         }
-        
       })
       .catch(err => console.log(err));
   },
 
   // Finds all of a user's threads
   findAllThreads: (req, res) => {
-    db.User.findAll({
+    db.User.findOne({
+
       where: {
         id: req.params.userId || req.user.id
       },
       include: [
         {
           model: db.Thread,
-          include: [db.Subforum]
+          include: [{ model: db.Subforum, attributes: ["category"] }]
         }
       ]
     })
       .then(userThreads => {
-        if (userThreads.Threads) {
+        if (userThreads) {
            console.log(userThreads.get({ plain: true }).Threads);
            res.json(userThreads.get({ plain: true }).Threads);
         } else {
@@ -201,4 +201,3 @@ module.exports = {
 //module.exports.newUser("zach@email.com", "zach", "password");
 //module.exports.newUser("andy@email.com", "andy", "password2");
 //module.exports.findUser(1);
-
