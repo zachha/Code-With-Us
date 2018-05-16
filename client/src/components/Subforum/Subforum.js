@@ -13,12 +13,19 @@ const floatRight = {
 class Subforum extends React.Component {
 
     state={
+        userId:this.props.user ? this.props.user.id:null,
         SubforumId:this.props.forumId,
         Threads:[],
         drawer:false
     }
 
     componentDidMount = () => this.loadThreads();
+
+    componentWillReceiveProps (newProps){
+        this.setState({
+            userId: newProps.user ? newProps.user.id:null
+        },console.log(newProps));
+    }
 
     loadThreads = () => 
         getAllSubforumThreads(this.state.SubforumId)
@@ -32,7 +39,7 @@ class Subforum extends React.Component {
     render () {return (
         <Paper elevation={3} className="left-feed">
            
-            <Typography className="thread-title" variant="display1">{this.state.category}<Button onClick={this.toggleDrawer}style={floatRight} color="primary">Create Thread</Button></Typography>
+    <Typography className="thread-title" variant="display1">{this.state.category}{this.state.userId && <Button onClick={this.toggleDrawer}style={floatRight} color="primary">Create Thread</Button>}</Typography>
             {this.state.Threads.map(thread => Thread(thread))}
             <CreateThread
                 subforumId={this.state.SubforumId}

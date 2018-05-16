@@ -7,7 +7,7 @@ import SubForums from '../SubFeed/Subforums';
 const HomeFeed = (props) => props.props.threadId ?//if threadId not null
      <Thread user={props.props.user} threadId={props.props.threadId}/> : //else
      props.props.forumId ? //if forumId not null
-     <Subforum forumId={props.props.forumId}/> : //else
+     <Subforum user={props.props.user} forumId={props.props.forumId}/> : //else
      <SubForums />;
 
 export default HomeFeed;
