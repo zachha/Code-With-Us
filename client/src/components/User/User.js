@@ -1,4 +1,4 @@
-import react from 'react';
+/*import react from 'react';
 import { Link } from "react-router-dom";
 import './user.css';
 
@@ -13,3 +13,4 @@ export default class User extends Component {
         )
     }
 };
+*/

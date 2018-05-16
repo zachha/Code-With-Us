@@ -29,8 +29,8 @@ class Reply extends React.Component {
         event.preventDefault();
         this.state.id?
         editPost(this.state)
-        .then(() => window.location.reload())
-        :createPost(this.state)
+        .then(() => window.location.reload()):
+        createPost(this.state)
         .then(() => window.location.reload());
     }
     

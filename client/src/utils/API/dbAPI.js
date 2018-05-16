@@ -35,11 +35,24 @@ export function getAllUsers () {
 }
 
 // creates a new user
+/** 
+ *@param {obj} user = {
+ *   email:string,
+ *   username:string,
+ *   password:string
+ *}
+ * 
+*/
 export function createUser (user) {
     return axios.post('/api/user',user);
 }
 
 //get specific user
+/**
+ * 
+ * @param int userId
+ * could also be a parseable string 
+ */
 export function getUser (userId) {
     return axios.get('/api/user/' + userId);
 }
@@ -77,7 +90,7 @@ export function deleteUser (userId) {
 
 // Creates a new thread to be associated with a user and subforum
 export function createThread  (thread) {
-    return axios.post('/api/thread',thread)
+    return axios.post('/api/user/thread',thread)
 }
 
 // finds all threads
@@ -118,7 +131,7 @@ export function editPost (newPost) {
 
 // allows user or moderator to delete specified post
 export function deletePost (postId) {
-    return axios.delete('/api/post');
+    return axios.delete('/api/post/'+postId);
 }
 
 // SUBFORUM //
