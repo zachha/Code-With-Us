@@ -18,12 +18,12 @@ class UserBox extends React.Component {
                 Hello, {this.state.user.username}
               </Typography>
               <Typography variant="title">
-                Your Reputation<FontAwesomeIcon icon="star" size="1x" className="star" />:
-                {this.state.user.reputation}
+                <FontAwesomeIcon icon="star" size="1x" className="star" />
+                Your Reputation: {this.state.user.reputation}
               </Typography>
               <Typography variant="title">
-                Your Post Count <FontAwesomeIcon icon="list-ul" size="1x" className="postCountIcon" />:
-                {this.state.user.postCount}
+                <FontAwesomeIcon icon="list-ul" size="1x" className="postCountIcon" />
+                Your Post Count: {this.state.user.postCount}
               </Typography>
             </Paper>;
         } else {
