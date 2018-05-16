@@ -33,7 +33,8 @@ export default class Main extends Component {
               <Route exact path="/login" render={() => <Login loginCallback={this.handleLogin} />} />
               <Route exact path="/signup" render={() => <Signup />} />
               <Route exact path="/user" render={() => <User user={this.state.user} />} />
-              <Route exact path="/user/:userId" render={({ match }) => <User user={this.state.user} userId={match.params.userId} />} />
+              <Route exact path="/user/posts/:userId" render={({ match }) => <User user={this.state.user} userId={match.params.userId} />} />
+              <Route exact path="/user/threads/:userId" render={({ match }) => <User user={this.state.user} userId={match.params.userId} />} />
               <Route exact path="/thread/:threadId" render={({ match }) => <Home user={this.state.user} threadId={match.params.threadId} />} />
               <Route exact path="/forum/:forumId" render={({ match }) => <Home user={this.state.user} forumId={match.params.forumId} />} />
             </Switch>
