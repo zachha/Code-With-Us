@@ -1,18 +1,20 @@
-const express = require("express");
-const path = require("path");
-const bodyParser = require("body-parser");
-// requires models to sync database
-const db = require("./models");
-const routes = require('./routes');
-const app = express();
+const express     = require('express');
+const path        = require('path');
+const morgan      = require('morgan');
+const bodyParser  = require('body-parser');
+const db          = require('./models');
+const routes      = require('./routes');
+const passport    = require('passport');
+
+require('dotenv').config();
+
+const app         = express();
+
 const PORT = process.env.PORT || 3001;
-
-
 
 // initialize body-parser
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
@@ -20,7 +22,9 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // Add API routes
+app.use(morgan('dev'));
 app.use(routes);
+app.use(passport.initialize());
 
 // Send every request to the React app
 // Define any API routes before this runs
