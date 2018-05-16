@@ -46,9 +46,9 @@ module.exports = {
 
     // Allows user or mod to update/edit a post
     editPost: (req , res) => {
-        db.Post.update({ text: content.text }, {
+        db.Post.update({ text: req.body.text }, {
              where: { 
-                 id: req.body.postId,
+                 id: req.body.id,
                  UserId: req.user.id           
                 } 
         })
@@ -60,9 +60,11 @@ module.exports = {
     },
 
     // Allows user or mod to delete a post
-    deletePost: (postid) => {
-        db.Post.destroy({ where: { id: postid } })
-          .then(user => console.log("Post has been deleted"))
+    deletePost: (req,res) => {
+        console.log(req.params.id);
+        console.log(req.user.id);
+        db.Post.destroy({ where: { id: req.params.id,UserId:req.user.id } })
+          .then(post => res.status(200).json({message:`deleted: ${post} `}))
           .catch(err => console.log(err));
     }
 }

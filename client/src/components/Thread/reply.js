@@ -6,8 +6,8 @@ import CardContent from "@material-ui/core/CardContent";
 import TextField from "@material-ui/core/TextField";
 import Markdown from "react-markdown";
 import CodeBlock from "../Markdown-plugins/code-block";
+import { createPost, editPost} from "../../utils/API/dbAPI";
 import Button from "@material-ui/core/Button";
-import { createPost} from "../../utils/API/dbAPI";
 
 
 class Reply extends React.Component {
@@ -15,16 +15,23 @@ class Reply extends React.Component {
         UserId:this.props.userId,
         threadId:this.props.threadId,
         text : ""
-    } 
-    
+    }
+   componentWillReceiveProps (newProps) {
+      newProps.toEdit && this.setState(newProps.toEdit,console.log(this.state));
+   }
+
     inputHandler = event => {
       this.setState({ text: event.target.value });
       console.log(this.state.text);      
     }
 
     formSubmit = event => {
-        createPost(this.state);
-        console.log(this.state,"Post")
+        event.preventDefault();
+        this.state.id?
+        editPost(this.state)
+        .then(() => window.location.reload()):
+        createPost(this.state)
+        .then(() => window.location.reload());
     }
     
     render () {return(
@@ -46,7 +53,7 @@ class Reply extends React.Component {
         <CardContent>            
             <TextField
                 multiline
-                hintText="Full width"
+                value={this.state.text}
                 fullWidth={true}
                 onChange={this.inputHandler}
             />       
