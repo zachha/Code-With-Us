@@ -8,7 +8,7 @@ import CodeBlock from "../Markdown-plugins/code-block";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 
-const Post = props => (
+const UserPost = props => (
 
     <div className="userPost">
         <Typography className="thread-title" variant="display1">
@@ -33,4 +33,4 @@ const Post = props => (
     </div>
     );
 
-export default Post;
+export default UserPost;
