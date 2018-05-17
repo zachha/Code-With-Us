@@ -32,7 +32,12 @@ class User extends React.Component {
         userId: this.props.userId,
         value: 0
     };
-
+    componentWillReceiveProps (newProps){
+      this.setState({
+        userId: newProps.user ? newProps.user.id:null,
+        user: newProps.user||null
+      })
+    }
     handleChange = (event, value) => {
         this.setState({ value });
     };
@@ -41,7 +46,7 @@ class User extends React.Component {
         const { value } = this.state;
         return <Grid container spacing={24}>
             <Grid item xs={12}>
-              <Paper className="userContent">
+              <Paper className="userContent" style={{justifyContent:"center"}}>
                 <AppBar position="static">
                   <Tabs value={value} onChange={this.handleChange} centered>
                     <Tab label="User Overview" />

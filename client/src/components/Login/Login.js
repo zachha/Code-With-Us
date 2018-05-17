@@ -93,6 +93,7 @@ export default class Login extends Component {
             .then(res => {
                 console.log(localStorage.getItem("CWUTOKEN"));
                 this.props.loginCallback(res.user)});
+                window.location.href="/";
             
         }
     }

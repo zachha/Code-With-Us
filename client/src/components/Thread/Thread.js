@@ -5,9 +5,11 @@ import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import AppBar from '@material-ui/core/AppBar';
 import Typography from "@material-ui/core/Typography";
 import Post from "../Cards/post";
 import Reply from "./reply";
+import UserInfo from '../Home/user-info';
 import { getAllThreadPosts, deletePost} from "../../utils/API/dbAPI";
 
 
@@ -59,19 +61,20 @@ class Thread extends React.Component {
     expandToggle = () => this.setState({expanded:!this.state.expanded});
     render() {
         return (
-            <Paper elevation={3} className="left-feed">
-               
+            <Paper elevation={3} className="home-feed">
                 <Typography className="thread-title" variant="display1">{this.state.title}</Typography>
+                <UserInfo style={{float:"right"}} user={this.props.user} userId={this.state.userId} />
                 {this.state.Posts.map(post => <Post post={post} 
                                                      userId={this.state.userId}
                                                      editCallback={this.handleEdit}
                                                      deleteCallback={this.handleDelete} />).sort()}
                 {this.state.userId && <ExpansionPanel expanded={this.state.expanded}>
-                    <ExpansionPanelSummary 
-                    expandIcon={<ExpandMoreIcon onClick={this.expandToggle}/>}> 
+                    <ExpansionPanelSummary
+                    onClick={this.expandToggle}
+                    expandIcon={<ExpandMoreIcon/>}> 
                     <Typography>Reply</Typography>                       
                     </ExpansionPanelSummary>
-                    <ExpansionPanelDetails >
+                    <ExpansionPanelDetails style={{padding:0}} >
                         <Reply toEdit={this.state.toEdit} threadId={this.state.threadId} userId={this.state.userId}/>
                     </ExpansionPanelDetails>
                 </ExpansionPanel>}

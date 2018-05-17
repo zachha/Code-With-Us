@@ -5,6 +5,7 @@ import { getAllSubforumThreads} from "../../utils/API/dbAPI";
 import Button from "@material-ui/core/Button";
 import CreateThread from './createDrawer';
 import Thread from "../Cards/thread";
+import UserInfo from "../Home/user-info";
 
 const floatRight = {
     float:"right"
@@ -37,9 +38,9 @@ class Subforum extends React.Component {
 
 
     render () {return (
-        <Paper elevation={3} className="left-feed">
-           
-    <Typography className="thread-title" variant="display1">{this.state.category}{this.state.userId && <Button onClick={this.toggleDrawer}style={floatRight} color="primary">Create Thread</Button>}</Typography>
+        <Paper elevation={3} className="feed">           
+            <Typography className="thread-title" variant="display1">{this.state.category}{this.state.userId && <Button onClick={this.toggleDrawer}style={floatRight} color="primary">Create Thread</Button>}</Typography>
+            <UserInfo style={{float:"right"}} user={this.props.user} userId={this.state.userId} />
             {this.state.Threads.map(thread => Thread(thread))}
             <CreateThread
                 subforumId={this.state.SubforumId}
