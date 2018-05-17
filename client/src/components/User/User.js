@@ -26,6 +26,7 @@ function TabContainer(props) {
     </Typography>
   );
 };
+// User componenet houses all user tabs
 class User extends Component {
   state = {
     user: this.props.user,
