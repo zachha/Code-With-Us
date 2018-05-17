@@ -13,7 +13,8 @@ passport.use(new LocalStrategy({
         //Assume there is a DB module pproviding a global UserModel
         return db.User.findOne({where:{
             $and:[{password:password},db.Sequelize.where(
-                db.Sequelize.fn('lower',db.Sequelize.col('username')),{$like:`%${username}%`})
+                db.Sequelize.fn('lower',db.Sequelize.col('username')),
+                {$like:`%${username}%`})
             ]
         }})
        

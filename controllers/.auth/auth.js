@@ -21,7 +21,7 @@ module.exports =  function auth (req, res, next) {
             if (err) {
                 res.send(err);
             }
-            console.log("-------"+user.id+"-------")
+            //console.log("-------"+user.id+"-------")
 
             const token = jwt.sign(user, 'flubbybunny');
             return res.json({user:user,token: token});
