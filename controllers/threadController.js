@@ -8,27 +8,6 @@ module.exports = {
       .then(threads => res.json(threads))
       .catch(err => console.log(err));
   },
-
-  // Allows user to create new threads
-  newThread: (req , res) => {
-        db.Thread.create({ title: req.body.title })
-        .then(thread => {
-          console.log(thread.get({ plain: true }));
-          db.User.findById(req.body.userId)
-            .then(user => user.addThread(thread)
-                .then(data => db.Subforum.findById(req.body.subforumId)
-                    .then(subforum => {
-                      subforum.addThread(thread)
-                      res.json(thread.get({ plain: true }))
-                    })
-                    .catch(err => console.log(err))  
-                )
-                .catch(err => console.log(err))
-            )
-            .catch(err => console.log(err))
-        })
-        .catch(err => console.log(err));
-    },
   // Finds all posts for the associated thread
   findAllThreadPosts: (req, res) => {
     console.log(req.params.id);
@@ -42,7 +21,7 @@ module.exports = {
       ]
     })
       .then(threads => {
-        //console.log(threads.get({ plain: true }));
+        console.log(threads.get({ plain: true }));
         res.json(threads.get({ plain: true }));
       })
       .catch(err => console.log(err));

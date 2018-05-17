@@ -1,0 +1,2 @@
+webpackJsonp([230],{279:function(e,m){Prism.languages.diff={coord:[/^(?:\*{3}|-{3}|\+{3}).*$/m,/^@@.*@@$/m,/^\d+.*$/m],deleted:/^[-<].*$/m,inserted:/^[+>].*$/m,diff:{pattern:/^!(?!!).+$/m,alias:"important"}}}});
+//# sourceMappingURL=230.8a21a033.chunk.js.map

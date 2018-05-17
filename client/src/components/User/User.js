@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import react from 'react';
 import { Link } from "react-router-dom";
 import UserBox from './user-box.js';
 import UserPosts from './user-posts.js';

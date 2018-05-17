@@ -15,6 +15,26 @@ module.exports = {
       .catch(err => console.log(err));
   },
 
+  // Allows user to create new threads
+  newThread: (req , res) => {
+    db.Thread.create({ title: req.body.title })
+    .then(thread => {
+      console.log(thread.get({ plain: true }));
+      db.User.findById(req.user.id)
+        .then(user => user.addThread(thread)
+            .then(data => db.Subforum.findById(req.body.subforumId)
+                .then(subforum => {
+                  subforum.addThread(thread)
+                  res.json(thread.get({ plain: true }))
+                })
+                .catch(err => console.log(err))  
+            )
+            .catch(err => console.log(err))
+        )
+        .catch(err => console.log(err))
+    })
+    .catch(err => console.log(err));
+},
   // allows user to update their password
   updatePassword: (req, res) => {
     db.User.update(

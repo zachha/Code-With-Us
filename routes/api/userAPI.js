@@ -8,6 +8,9 @@ router.route('/')
 
 router.get("/fromtoken",userController.findFromToken);//finds a user from a saved token   
 
+router.post('/thread',userController.newThread) // creates a new thread associated with a user and subforum
+
+
 router.route("/:id")
   .get(userController.findUser) // finds specific user
   .put(userController.updatePassword) // updates password

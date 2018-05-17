@@ -35,11 +35,24 @@ export function getAllUsers () {
 }
 
 // creates a new user
+/** 
+ *@param {obj} user = {
+ *   email:string,
+ *   username:string,
+ *   password:string
+ *}
+ * 
+*/
 export function createUser (user) {
     return axios.post('/api/user',user);
 }
 
 //get specific user
+/**
+ * 
+ * @param int userId
+ * could also be a parseable string 
+ */
 export function getUser (userId) {
     return axios.get('/api/user/' + userId);
 }
@@ -83,7 +96,7 @@ export function deleteUser (userId) {
 
 // Creates a new thread to be associated with a user and subforum
 export function createThread  (thread) {
-    return axios.post('/api/thread',thread)
+    return axios.post('/api/user/thread',thread)
 }
 
 // finds all threads
@@ -107,7 +120,9 @@ export function updateThreadRep (threadId) {
 
 // allows user to create new post that will be associated with the thread it is in
 export function createPost(post) {
-    return axios.post('/api/post', post);
+    console.log("in api: ",post)
+    return axios.post('/api/post', post)
+    .catch(err => console.log(err));
 }
 
 // gets the specified post
@@ -116,13 +131,13 @@ export function getPost (postId) {
 }
 
 // allows user or moderator to edit specified post
-export function editPost (postId,newText) {
-    return axios.put('/api/post',newText);
+export function editPost (newPost) {
+    return axios.put('/api/post',newPost);
 }
 
 // allows user or moderator to delete specified post
 export function deletePost (postId) {
-    return axios.delete('/api/post');
+    return axios.delete('/api/post/'+postId);
 }
 
 // SUBFORUM //
