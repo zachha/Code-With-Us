@@ -1,4 +1,4 @@
-import react from 'react';
+import React from 'react';
 import { Link } from "react-router-dom";
 import UserBox from './user-box.js';
 import UserPosts from './user-posts.js';
@@ -26,7 +26,7 @@ function TabContainer(props) {
     </Typography>
   );
 };
-class User extends Component {
+class User extends React.Component {
     state = {
         user: this.props.user,
         userId: this.props.userId,
