@@ -59,8 +59,14 @@ export function getUser (userId) {
 
 // returns all of a specified user's posts
 export function getAllUserPosts (userId) {
-    return axios.get('/api/user/' + userId);
+    return axios.get('/api/user/posts/' + userId);
 }
+
+// returns all of a specified user's threads
+export function getAllUserThreads (userId) {
+    return axios.get('/api/user/threads/' + userId);
+}
+
 
 // updates specified user's password
 export function updatePassword (userId, newPassword) {
