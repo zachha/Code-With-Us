@@ -8,7 +8,7 @@ import Typography from "@material-ui/core/Typography";
 
 const Subforum = subForum => (
     <Link to={`/forum/${subForum.id}`}>
-        <Card>
+        <Card style={{marginTop:"7.5px",marginBottom:"7.5px"}}>
             <CardHeader
                 avatar={
                 <Avatar>
