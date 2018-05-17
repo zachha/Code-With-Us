@@ -53,7 +53,7 @@ To use Code-With-Us web application application from your local environment, you
   </tr>
   <tr>
     <td align="center">01</td>
-    <td colspan="2">Ensure Node, required NPM Packages, and MongoDB are all installed on your local machine</td>
+    <td colspan="2">Ensure required NPM Packages, and PostgresDB are all installed on your local machine</td>
   </tr>
   <tr>
     <td align="center">02</td>
