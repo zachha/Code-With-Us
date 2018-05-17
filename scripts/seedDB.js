@@ -90,7 +90,10 @@ const Seed =  () =>
               db.User.findById(thread.UserId)
              .then(user => user.addThread(thread));
              db.Subforum.findById(thread.SubforumId)
-             .then(subforum => subforum.addThread(thread))
+             .then(subforum => {
+                 subforum.addThread(thread);
+                 subforum.increment({threadCount:1});
+             })
         })
     )));
 

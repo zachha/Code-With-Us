@@ -22,10 +22,13 @@ module.exports = {
       console.log(thread.get({ plain: true }));
       db.User.findById(req.user.id)
         .then(user => user.addThread(thread)
-            .then(data => db.Subforum.findById(req.body.subforumId)
+            .then(() => db.Subforum.findById(req.body.subforumId)
                 .then(subforum => {
                   subforum.addThread(thread)
-                  res.json(thread.get({ plain: true }))
+                  .then(() => {
+                    subforum.increment({threadCount: 1});
+                  });
+                  res.json(thread.get({ plain: true }));                 
                 })
                 .catch(err => console.log(err))  
             )

@@ -63,8 +63,17 @@ module.exports = {
     deletePost: (req,res) => {
         console.log(req.params.id);
         console.log(req.user.id);
-        db.Post.destroy({ where: { id: req.params.id,UserId:req.user.id } })
-          .then(post => res.status(200).json({message:`deleted: ${post} `}))
-          .catch(err => console.log(err));
+        db.Post.findOne({ where: { id: req.params.id,UserId:req.user.id } })
+          .then(post => {
+            return db.Post.destroy({where:{ id: post.id }})
+            .then(() =>
+                db.Thread.findById(post.ThreadId)
+                .then(thread => thread.removePost(req.params.id)
+                   .then(() => {thread.increment({ postCount: -1})})
+                )  
+                .then(res.status(200).json({message:`deleted post: ${req.params.id} `}))
+            )
+        })          
+        .catch(err => console.log(err));
     }
 }
