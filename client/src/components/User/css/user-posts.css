@@ -1,9 +1,4 @@
-.userPost {
-    margin: 50px 0px;
-}
-
-
-.noPosts {
+.noPost {
     display: flex;
     text-align: center;
     justify-content: center;
