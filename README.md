@@ -73,7 +73,7 @@ To use Code-With-Us web application application from your local environment, you
   <tr>
     <td align="center">05</td>
     <td>Start PostgresDB server</td>
-    <td>monod</td>
+    <td>??</td>
   </tr>
   <tr>
     <td align="center">06</td>
