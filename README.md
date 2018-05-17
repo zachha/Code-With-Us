@@ -58,7 +58,7 @@ To use Code-With-Us web application application from your local environment, you
   <tr>
     <td align="center">02</td>
     <td>Clone this repo</td>
-    <td>git clone https://<i></i>github.com/GrissomErick/Code-With-Us.git</td>
+    <td>git clone https://<i></i>github.com/zachha/Code-With-Us.git</td>
   </tr>
   <tr>
     <td align="center">03</td>
@@ -72,7 +72,7 @@ To use Code-With-Us web application application from your local environment, you
   </tr>
   <tr>
     <td align="center">05</td>
-    <td>Start MonoDB server</td>
+    <td>Start PostgresDB server</td>
     <td>monod</td>
   </tr>
   <tr>
