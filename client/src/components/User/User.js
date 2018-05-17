@@ -76,7 +76,9 @@ class User extends Component {
             {value === 2 && (
               <TabContainer>
                 {/* renders all of the user's posts and shows the title of the thread they were in */}
-                <UserPosts user={this.state.user} />
+                <UserPosts 
+                user={this.state.user}
+                />
               </TabContainer>
             )}
           </Paper>

@@ -39,7 +39,9 @@ class UserThreads extends React.Component {
         </div>
       );
     } else {
-      return "User hasn't created any threads yet!";
+      return <div className="noThread">
+      <p>User hasn't created any threads yet!</p>
+        </div>
     }
   }
 }

@@ -33,7 +33,7 @@ class UserBox extends React.Component {
               <ListItemText
                 primary={this.state.user.username}
                 secondary={
-                  "User joined on " //{this.state.user.createdAt}
+                  "User is a Code With Us Moderator!" //{this.state.user.createdAt}
                 }
               />
             </ListItem>

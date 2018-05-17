@@ -14,21 +14,19 @@ const UserThread = props => (
         </Typography>
         
             <Card>
-                <CardHeader
-                    avatar={<Avatar>{props.username[0]}</Avatar>}
-                    title={props.username}
-                    subheader={`${props.thread.postCount} Posts`}
-                />
                 <div className="postContent">
-                    <CardContent>
+                    <CardContent className="cardContent">
+                        <Avatar>{props.username[0]}</Avatar>
                         <Typography variant="display1">
-                            <Link 
-                            to={`/thread/${props.thread.id}`} 
-                            style={{ textDecoration: 'none' }}
-                            >
+                            <Link to={`/thread/${props.thread.id}`}>
                                 {props.thread.title}
                             </Link>
                         </Typography>
+                    <div className="threadAuthorPostCount">
+                        Author: {props.username}
+                        <br />
+                        {props.thread.postCount} Posts
+                    </div>
                     </CardContent>
                 </div>
             </Card>
