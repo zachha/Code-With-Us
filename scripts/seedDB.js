@@ -4,7 +4,10 @@ const db = require('../models');
 //array  of data objects to create subforums
 const subforums = [
     {category:"Markdown"},
-    {category:"Miscellaneous"}
+    {category:"Miscellaneous"},
+    {category:"JavaScript"},
+    {category:"C++"},
+    {category:"Python"}
 ];
 
 //array of data objects to create users

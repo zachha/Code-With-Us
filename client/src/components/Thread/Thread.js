@@ -61,7 +61,7 @@ class Thread extends React.Component {
     expandToggle = () => this.setState({expanded:!this.state.expanded});
     render() {
         return (
-            <Paper elevation={3} className="home-feed">
+            <Paper elevation={3} className="feed">
                 <Typography className="thread-title" variant="display1">{this.state.title}</Typography>
                 <UserInfo style={{float:"right"}} user={this.props.user} userId={this.state.userId} />
                 {this.state.Posts.map(post => <Post post={post} 
@@ -69,7 +69,9 @@ class Thread extends React.Component {
                                                      editCallback={this.handleEdit}
                                                      deleteCallback={this.handleDelete} />).sort()}
                 {this.state.userId && <ExpansionPanel expanded={this.state.expanded}>
-                    <ExpansionPanelSummary
+
+
+                    <ExpansionPanelSummary 
                     onClick={this.expandToggle}
                     expandIcon={<ExpandMoreIcon/>}> 
                     <Typography>Reply</Typography>                       

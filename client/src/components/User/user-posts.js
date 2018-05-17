@@ -22,7 +22,7 @@ class UserPosts extends React.Component {
 
   loadPosts = () =>
     getAllUserPosts(this.props.user).then(res => {
-      if(res.data[0].text) {
+      if(res.data[0]) {
         this.setState({ Posts: res.data });
       } else {
         this.setState({ Posts: [] });
@@ -30,14 +30,16 @@ class UserPosts extends React.Component {
     });
 
   render() {
-      if (this.state.Posts) {
+      if (this.state.Posts.length != 0) {
         return (
             <div>
                 {this.state.Posts.map(post => UserPost({ post: post, username: this.props.user.username }))}
             </div>
         )
       } else {
-          return "User hasn't created any posts yet!";
+          return <div className="noPosts">
+          <p> User hasn't created any posts yet! </p>
+            </div>
       }
   }
 };

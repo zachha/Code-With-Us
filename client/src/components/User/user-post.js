@@ -7,6 +7,7 @@ import Markdown from "react-markdown";
 import CodeBlock from "../Markdown-plugins/code-block";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
+import './css/user-post.css';
 
 const UserPost = props => (
 
