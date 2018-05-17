@@ -1,0 +1,18 @@
+.threadAuthorPostCount {
+    display: flex;
+    margin-left: auto;
+}
+.threadTitle {
+    float: auto;
+}
+.threadAvatar {
+    float: left;
+    margin-right: 20px;
+}
+.cardContent {
+    display: flex;
+    justify-content: flex-start;
+}
+.threadCard {
+    margin: 15px 0px;
+}

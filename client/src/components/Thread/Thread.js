@@ -68,7 +68,8 @@ class Thread extends React.Component {
                                                      deleteCallback={this.handleDelete} />).sort()}
                 {this.state.userId && <ExpansionPanel expanded={this.state.expanded}>
                     <ExpansionPanelSummary 
-                    expandIcon={<ExpandMoreIcon onClick={this.expandToggle}/>}> 
+                    onClick={this.expandToggle}
+                    expandIcon={<ExpandMoreIcon/>}> 
                     <Typography>Reply</Typography>                       
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails >
