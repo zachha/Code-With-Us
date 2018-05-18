@@ -54,8 +54,10 @@ class Reply extends React.Component {
             <TextField
                 multiline
                 value={this.state.text}
+                label="Your Post"
                 fullWidth={true}
                 onChange={this.inputHandler}
+               
             />       
             <Markdown
                 source={this.state.text} 

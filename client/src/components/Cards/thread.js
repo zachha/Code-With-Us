@@ -8,7 +8,7 @@ import Typography from "@material-ui/core/Typography";
 import './thread.css';
 
 const Thread = thread => (
-  <Card className="threadCard">
+  <Card style={{marginTop:"7.5px",marginBottom:"7.5px"}} className="threadCard">
     <CardContent className="cardContent">
       <Avatar className="threadAvatar">{thread.User.username[0]}</Avatar>
         <Typography className="threadTitle" variant="display1">

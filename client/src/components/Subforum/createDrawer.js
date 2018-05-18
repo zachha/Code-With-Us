@@ -2,6 +2,7 @@ import React from 'react';
 import Drawer from '@material-ui/core/Drawer';
 import Avatar from "@material-ui/core/Avatar";
 import Card from "@material-ui/core/Card";
+import Paper from "@material-ui/core/Paper";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardContent from "@material-ui/core/CardContent";
 import TextField from "@material-ui/core/TextField";
@@ -61,10 +62,11 @@ class CreateThread extends React.Component {
         onClick={this.toggleDrawer}
         onKeyDown={this.toggleDrawer}
     >
+<Paper style={{padding:"15px"}}>
 <form className="reply-form" onSubmit={this.handleSave}>   
     <Card className="reply-card">
         <CardHeader 
-            style={{borderBottom:"2px solid #ccc"}}
+            style={{borderBottom:"0px solid #ccc"}}
             className="post-submit"
             avatar={
             <Avatar aria-label="Code With Us">
@@ -80,7 +82,6 @@ class CreateThread extends React.Component {
                 label="Title"
                 value={this.state.title}
                 style={{float:"left",width:"55%",marginTop:"20px"}}
-                placeholder="How To Make Code"
                 onChange={this.titleInput} 
                />   
               </span>
@@ -95,7 +96,6 @@ class CreateThread extends React.Component {
                 value={this.state.text}
                 style={{width:"91%"}}
                 onChange={this.inputHandler}
-                placeholder="Agree with OP"
             /></div>      
             <Markdown
                 source={this.state.text} 
@@ -103,7 +103,9 @@ class CreateThread extends React.Component {
             /> 
         </CardContent>
     </Card>
+
     </form>
+    </Paper>
     </div>
     </Drawer>
 );}

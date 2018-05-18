@@ -23,6 +23,7 @@ export default class Main extends Component {
     handleLogin = user => {
         this.setState({user:user},()=>console.log(this.state));
         setAuth();
+        window.location.href="/";
     }
 
     render(){

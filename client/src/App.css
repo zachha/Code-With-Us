@@ -47,10 +47,14 @@ a {
   width:100%;
 }
 
-.left-feed {
-  width: 65%;
-  padding: 15px;
-  min-height: 800px;
+.feed{
+   width:calc(100% - 10px);
+   padding: 15px 5px 15px 5px;
+   min-height: 800px;
+}
+
+.home-feed {
+  width: 85%;
 }
 .reply-form{
   width:100%;
@@ -73,8 +77,8 @@ button.form-button {
 }
 
 @media screen and (max-width: 1400px) {
-  .left-feed {
-    width: 60%; 
+  .home-feed {
+    width: 85%; 
   }
 }
 
