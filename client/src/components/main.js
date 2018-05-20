@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import Home from './Home/Home';
@@ -8,7 +8,7 @@ import Login from './Login/Login';
 import Signup from './Signup/Signup';
 
 
-const Main = (props) => (
+const Main = props => (
     <div className="content-main">
         <Switch>
             <Route  exact path="/"
