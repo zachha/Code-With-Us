@@ -44,16 +44,16 @@ class Thread extends React.Component {
 
     handleEdit = event => {
         event.preventDefault();
-        //console.log(this.state.Posts);
+        console.log(event.currentTarget.id);
         this.setState({
-            toEdit:this.state.Posts.find(post => post.id===parseInt(event.target.id)),
+            toEdit:this.state.Posts.find(post => post.id===parseInt(event.currentTarget.id)),
             expanded:true
-        },console.log(this.state.expanded))
+        })
     }
-    
+
     handleDelete = event => {
        event.preventDefault();
-       deletePost(event.target.id)
+       deletePost(event.currentTarget.id)
        .then(() => window.location.reload());
 
     }
