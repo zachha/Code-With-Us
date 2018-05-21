@@ -21,17 +21,14 @@ if (process.env.NODE_ENV === "production") {
 
 
 // Add API routes
+app.use(morgan('dev'));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(passport.initialize());
 app.use(routes);
 
-// Send every request to the React app
-// Define any API routes before this runs
-/*
-app.get("*", function(req, res) {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"));
-});
-*/
-
 // syncs the database and starts the server
+// FORCE TRUE IS ON DON'T FORGET TO TURN OFF
 db.sequelize.sync({ force: false }).then(() => {
 
   require('./scripts/seedDB');

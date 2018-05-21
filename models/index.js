@@ -13,7 +13,13 @@ if (config.use_env_variable) {
 } else {
   var sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
-
+/*
+const sequelize = new Sequelize(
+  process.env.DBName,
+  process.env.DBUser,
+  process.env.DBPass
+);
+*/
 fs
   .readdirSync(__dirname)
   .filter(file => {

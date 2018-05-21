@@ -1,3 +1,5 @@
+const bcrypt = require('bcrypt-nodejs');
+
 module.exports = function(sequelize, DataTypes) {
     const User = sequelize.define("User", {
         // user's username as defined during user registration
@@ -53,7 +55,43 @@ module.exports = function(sequelize, DataTypes) {
                 // protect against xss
             }
         }
-    });
+    }, 
+    {
+        hooks: {
+
+            beforeCreate: ( user, options ) => {
+                let salt = bcrypt.genSaltSync();
+
+                let hashedPassword = bcrypt.hashSync( user.password, salt );
+
+                user.password = hashedPassword;
+
+                return user;
+            }
+/*
+            beforeCreate: (user, options) => {
+                let newPW = () => {
+
+                    bcrypt.genSalt( 10, ( err, salt ) => {
+                        if( err ) { throw err }
+
+                        let hashedPw = () => { 
+                            bcrypt.hash( user.password, salt, null, ( err, hash ) => {
+                                if( err ) { throw err }
+                                return hash
+                            });
+                        }
+
+                        return hashedPw()
+                    });
+                }
+
+                return newPW()
+            } */
+        }
+    }
+
+);
 
     // users associated with the posts that they create
     User.associate = function(models) {
@@ -61,12 +99,14 @@ module.exports = function(sequelize, DataTypes) {
         User.hasMany(models.Thread);
     };
 
-    /*
-    // users associated with the threads that they create
-    User.associate = function(models) {
-        
-    };
-    */
+    User.prototype.comparePassword = function( pass, cb ){
+        bcrypt.compare( pass, this.password, function( err, match ){
+            if( err ){
+                return cb( err );
+            }
+            cb( null, match );
+        });
+    }
 
     return User;
 };
