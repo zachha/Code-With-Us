@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Paper from "@material-ui/core/Paper";
 
 import SignupForm from './signupForm';
+import {createUser} from '../../utils/API/dbAPI';
 
 const email = new RegExp(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/);
 
@@ -189,11 +190,17 @@ export default class Signup extends Component {
                     submitEnabled: false
                 });
                 let userCredentials = {
-                    username: this.state.username.toLowerCase(),
-                    email: this.state.email,
-                    password: this.state.password
+                    username: this.state.username.value.toLowerCase(),
+                    email: this.state.email.value,
+                    password: this.state.password.value
                 } ;
-                console.log("Submitting");
+                createUser(userCredentials)
+                    .then(response => {
+                        console.log(response);
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
                 //axios request the sign up form here with credentials
         }
     }

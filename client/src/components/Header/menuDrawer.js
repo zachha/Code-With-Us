@@ -50,14 +50,14 @@ const MenuDrawer = props => (
                     <ListItemText primary="About" />
                 </ListItem>
             </Link>
-            <Link to='/user' onClick={props.onCloseDrawer}>
+            { props.user.isLoggedIn && <Link to='/user' onClick={props.onCloseDrawer}>
                 <ListItem button>
                     <ListItemIcon>
                         <FontAwesomeIcon icon="id-card" className="idCard" />
                 </ListItemIcon>
                 <ListItemText primary="User Info" />
                 </ListItem>
-            </Link>
+            </Link> }
         </List>
     </Drawer>
 );
