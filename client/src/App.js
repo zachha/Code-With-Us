@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import {setAuth,defaultLogin} from './utils/API/dbAPI';
+import { setAuth, defaultLogin, logout} from './utils/API/dbAPI';
 
 import Header from './components/Header/Header';
 import Main from './components/main';
@@ -32,10 +32,9 @@ class App extends Component {
   };
 
   componentDidMount () {
-    console.log("mounted");
     setAuth();
     defaultLogin()
-    .then(res => this.setState({user:res}));
+      .then(res => this.handleLogin(res));
   };
 
   handleLogin = user => {
@@ -54,6 +53,7 @@ class App extends Component {
         reputation: user.reputation
       }
     });
+
     setAuth();
   };
 
@@ -73,6 +73,8 @@ class App extends Component {
         reputation: null
       }
     });
+
+    logout();
   };
 
   openMenuDrawer = (e) => {
