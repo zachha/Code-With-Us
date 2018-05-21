@@ -35,6 +35,13 @@ const MenuDrawer = props => (
                     <ListItemText primary="Login" />
                 </ListItem>
             </Link>}
+            { props.user.isLoggedIn &&
+            <ListItem button onClick={props.handleLogout}>
+                <ListItemIcon>
+                    <PersonIcon />
+                </ListItemIcon>
+                <ListItemText primary="Log Out" />
+            </ListItem>}
             <Link to='/about' onClick={props.onCloseDrawer}>
                 <ListItem button>
                     <ListItemIcon>
