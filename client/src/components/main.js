@@ -18,7 +18,7 @@ const Main = props => (
                     render={() => <About />} />
 
             <Route  exact path="/login"
-                    render={() => <Login    loginCallback={props.handleLogin}
+                    render={() => <Login    handleLogin={props.handleLogin}
                                             user={props.user} /> } />
 
             <Route  exact path="/signup"
