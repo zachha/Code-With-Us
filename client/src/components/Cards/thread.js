@@ -5,25 +5,24 @@ import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
+import './thread.css';
 
 const Thread = thread => (
-    <Link to={`/thread/${thread.id}`}>
-        <Card>
-            <CardHeader
-                avatar={
-                <Avatar>
-                    {thread.User.username[0]}
-                </Avatar>
-                }
-                title={thread.User.username}
-                subheader={`${thread.postCount} Posts`}
-            />
-            <CardContent>        
-            <Typography variant="display1">{thread.title}</Typography>
-
-            </CardContent>
-        </Card>
-    </Link>
-    );
+  <Card style={{marginTop:"7.5px",marginBottom:"7.5px"}} className="threadCard">
+    <CardContent className="cardContent">
+      <Avatar className="threadAvatar">{thread.User.username[0]}</Avatar>
+        <Typography className="threadTitle" variant="display1">
+            <Link to={`/thread/${thread.id}`}>
+                {thread.title}
+            </Link>
+        </Typography>
+      <div className="threadAuthorPostCount">
+        Author: {thread.User.username}
+        <br />
+        {thread.postCount} Posts
+      </div>
+    </CardContent>
+  </Card>
+);
 
 export default Thread;

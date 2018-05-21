@@ -8,6 +8,6 @@ const HomeFeed = (props) => props.props.threadId ?//if threadId not null
      <Thread user={props.props.user} threadId={props.props.threadId}/> : //else
      props.props.forumId ? //if forumId not null
      <Subforum user={props.props.user} forumId={props.props.forumId}/> : //else
-     <SubForums />;
+     <SubForums user={props.props.user}/>;
 
 export default HomeFeed;

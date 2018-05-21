@@ -29,7 +29,7 @@ class Post extends React.Component{
 
    render () {return (
 
-    <Card>
+    <Card style={{marginTop:"7.5px",marginBottom:"7.5px"}}>
         <CardHeader
             
             avatar={

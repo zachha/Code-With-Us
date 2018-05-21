@@ -1,0 +1,2 @@
+webpackJsonp([218],{305:function(e,a){!function(e){e.languages.erb=e.languages.extend("ruby",{}),e.languages.insertBefore("erb","comment",{delimiter:{pattern:/^<%=?|%>$/,alias:"punctuation"}}),e.hooks.add("before-tokenize",function(a){var n=/<%=?[\s\S]+?%>/g;e.languages["markup-templating"].buildPlaceholders(a,"erb",n)}),e.hooks.add("after-tokenize",function(a){e.languages["markup-templating"].tokenizePlaceholders(a,"erb")})}(Prism)}});
+//# sourceMappingURL=218.973abc07.chunk.js.map

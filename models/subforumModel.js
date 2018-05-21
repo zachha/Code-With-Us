@@ -7,7 +7,11 @@ module.exports = function(sequelize, DataTypes) {
                 len: [1, 100]
                 // try to validate against XSS
             }
-        }
+        },
+        threadCount: {
+            type: DataTypes.INTEGER,
+            defaultValue: 0
+        },
     });
 
     // Suborum associated with many threads that belong to a specific subforum category

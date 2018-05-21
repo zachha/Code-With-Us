@@ -19,9 +19,9 @@ class Reply extends React.Component {
    componentWillReceiveProps (newProps) {
       newProps.toEdit && this.setState(newProps.toEdit,console.log(this.state));
    }
-
+   
     inputHandler = event => {
-      this.setState({ text: event.target.value });
+      this.setState({ text: event.currentTarget.value });
       console.log(this.state.text);      
     }
 
@@ -54,8 +54,10 @@ class Reply extends React.Component {
             <TextField
                 multiline
                 value={this.state.text}
+                label="Your Post"
                 fullWidth={true}
                 onChange={this.inputHandler}
+               
             />       
             <Markdown
                 source={this.state.text} 

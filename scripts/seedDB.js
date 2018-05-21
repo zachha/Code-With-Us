@@ -4,7 +4,10 @@ const db = require('../models');
 //array  of data objects to create subforums
 const subforums = [
     {category:"Markdown"},
-    {category:"Miscellaneous"}
+    {category:"Miscellaneous"},
+    {category:"JavaScript"},
+    {category:"C++"},
+    {category:"Python"}
 ];
 
 //array of data objects to create users
@@ -90,7 +93,10 @@ const Seed =  () =>
               db.User.findById(thread.UserId)
              .then(user => user.addThread(thread));
              db.Subforum.findById(thread.SubforumId)
-             .then(subforum => subforum.addThread(thread))
+             .then(subforum => {
+                 subforum.addThread(thread);
+                 subforum.increment({threadCount:1});
+             })
         })
     )));
 
