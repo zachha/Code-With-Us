@@ -27,14 +27,14 @@ const MenuDrawer = props => (
                     <ListItemText primary="Home" />
                 </ListItem>
             </Link>
-            <Link to='/login' onClick={props.onCloseDrawer}>
+            { !props.user.isLoggedIn && <Link to='/login' onClick={props.onCloseDrawer}>
                 <ListItem button>
                     <ListItemIcon>
                         <PersonIcon />
                     </ListItemIcon>
                     <ListItemText primary="Login" />
                 </ListItem>
-            </Link>
+            </Link>}
             <Link to='/about' onClick={props.onCloseDrawer}>
                 <ListItem button>
                     <ListItemIcon>

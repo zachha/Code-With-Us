@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
-import Paper from "@material-ui/core/Paper";
-import {login} from '../../utils/API/dbAPI';
+import { Redirect } from 'react-router';
+
 import LoginForm from './loginForm';
+
+import Paper from "@material-ui/core/Paper";
+
+import { login } from '../../utils/API/dbAPI';
 
 export default class Login extends Component {
     constructor(props){
@@ -91,20 +95,22 @@ export default class Login extends Component {
 
             login(credentials)
             .then(res => {
-                console.log(localStorage.getItem("CWUTOKEN"));
-                this.props.loginCallback(res.user)});
+                this.props.handleLogin(res.user)});
             
         }
     }
 
     render(){
         return (
-        <Paper elevation={3} className="form-box">
-            <LoginForm 
-                {...this.state}
-                onUsernameChange={this.onUsernameChange}
-                onPasswordChange={this.onPasswordChange}
-                onSubmit={this.onSubmit}/>
-        </Paper>)
+        <React.Fragment>
+            { this.props.user.isLoggedIn && <Redirect to="/" push /> }
+            <Paper elevation={3} className="form-box">
+                <LoginForm 
+                    {...this.state}
+                    onUsernameChange={this.onUsernameChange}
+                    onPasswordChange={this.onPasswordChange}
+                    onSubmit={this.onSubmit}/>
+            </Paper>
+        </React.Fragment>)
     }
 }

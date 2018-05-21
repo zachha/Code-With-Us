@@ -18,7 +18,7 @@ class App extends Component {
 
       user: {
         isLoggedIn: false,
-        userName: null,
+        username: null,
         joinDate: null,
         lastUpdated: null,
         id: null,
@@ -39,8 +39,40 @@ class App extends Component {
   };
 
   handleLogin = user => {
-      this.setState( { user : user });
-      setAuth();
+    this.setState({
+      user: {
+        ...this.state.user,
+        isLoggedIn: true,
+        username: user.username,
+        joinDate: user.createdAt,
+        lastUpdated: user.updatedAt,
+        id: user.id,
+        isModerator: user.isModerator,
+        picture: user.picture,
+        postCount: user.postCount,
+        reports: user.reports,
+        reputation: user.reputation
+      }
+    });
+    setAuth();
+  };
+
+  handleLogout = () => {
+    this.setState({
+      user: {
+        ...this.state.user,
+        isLoggedIn: false,
+        username: null,
+        joinDate: null,
+        lastUpdated: null,
+        id: null,
+        isModerator: null,
+        picture: null,
+        postCount: null,
+        reports: null,
+        reputation: null
+      }
+    });
   };
 
   openMenuDrawer = (e) => {
@@ -66,8 +98,11 @@ class App extends Component {
           isMenuOpen={this.state.menuDrawer.isOpen}
           onOpenDrawer={this.openMenuDrawer}
           onCloseDrawer={this.closeMenuDrawer}
+          handleLogout={this.handleLogout}
           user={this.state.user}/>
-        <Main user={this.state.user}/>
+        <Main 
+          user={this.state.user}
+          handleLogin={this.handleLogin} />
       </div>
     );
   };

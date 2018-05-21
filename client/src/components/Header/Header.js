@@ -14,8 +14,9 @@ const Header = props => {
                     className="menu-icon"
                     onClick={props.onOpenDrawer}/>
             </div>
-            <MenuDrawer 
+            <MenuDrawer
                 open={props.isMenuOpen}
+                user={props.user}
                 onCloseDrawer={props.onCloseDrawer}/>
         </React.Fragment>
     )
